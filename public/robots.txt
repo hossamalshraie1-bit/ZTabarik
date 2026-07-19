@@ -1,9 +1,9 @@
-# استوديو النبلاء للصوتيات - robots.txt
+# استوديو زفات تباريك للصوتيات - robots.txt
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://studio-alnubalaa.com/sitemap.xml
+Sitemap: https://z-tabarik.vercel.app/sitemap.xml
 
 # Allow all search engines
 User-agent: Googlebot
