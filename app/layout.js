@@ -22,8 +22,21 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    'name': 'استوديو زفات تباريك للصوتيات',
+    'url': 'https://z-tabarik.vercel.app',
+  };
+
   return (
     <html lang="ar" dir="rtl">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         {children}
       </body>
