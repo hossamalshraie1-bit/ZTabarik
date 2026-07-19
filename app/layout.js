@@ -5,7 +5,7 @@ export const metadata = {
   description: 'الموقع الرسمي لاستوديو زفات تباريك للصوتيات - شيلات حماسية بالأسماء، زفات أفراح فخمة، تسجيل وتوزيع صوتي احترافي.',
   manifest: '/manifest.json',
   verification: {
-    google: 'google00310de1a8081ad1',
+    google: 'google7464326adc760ed7',
   },
   metadataBase: new URL('https://z-tabarik.vercel.app'),
   alternates: {
