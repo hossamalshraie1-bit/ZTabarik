@@ -492,6 +492,18 @@ export default function Home() {
 
   return (
     <div className="rtl app-container" data-theme={appTheme}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            'name': 'استوديو زفات تباريك للصوتيات',
+            'alternateName': ['زفات تباريك', 'استوديو تباريك'],
+            'url': 'https://z-tabarik.vercel.app',
+          })
+        }}
+      />
       <div className="phone-mockup">
         <div className="app-viewport">
 
