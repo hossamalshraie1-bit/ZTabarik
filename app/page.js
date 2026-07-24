@@ -89,79 +89,102 @@ export default function Home() {
 
   // Sync favorites and cart to local storage (after mount)
   useEffect(() => {
-    const savedFavs = localStorage.getItem('studio_favorites');
-    if (savedFavs) setSavedTrackIds(JSON.parse(savedFavs));
+    try {
+      const savedFavs = localStorage.getItem('studio_favorites');
+      if (savedFavs) {
+        const parsed = JSON.parse(savedFavs);
+        if (Array.isArray(parsed)) setSavedTrackIds(parsed);
+      }
+    } catch (e) {
+      console.error('Error parsing studio_favorites:', e);
+    }
 
-    const savedCart = localStorage.getItem('studio_cart');
-    if (savedCart) setCart(JSON.parse(savedCart));
+    try {
+      const savedCart = localStorage.getItem('studio_cart');
+      if (savedCart) {
+        const parsed = JSON.parse(savedCart);
+        if (Array.isArray(parsed)) setCart(parsed);
+      }
+    } catch (e) {
+      console.error('Error parsing studio_cart:', e);
+    }
   }, []);
 
   useEffect(() => {
-    if (savedTrackIds.length > 0 || localStorage.getItem('studio_favorites')) {
-      localStorage.setItem('studio_favorites', JSON.stringify(savedTrackIds));
-    }
+    try {
+      if (savedTrackIds.length > 0 || localStorage.getItem('studio_favorites')) {
+        localStorage.setItem('studio_favorites', JSON.stringify(savedTrackIds));
+      }
+    } catch (e) {}
   }, [savedTrackIds]);
 
   useEffect(() => {
-    if (cart.length > 0 || localStorage.getItem('studio_cart')) {
-      localStorage.setItem('studio_cart', JSON.stringify(cart));
-    }
+    try {
+      if (cart.length > 0 || localStorage.getItem('studio_cart')) {
+        localStorage.setItem('studio_cart', JSON.stringify(cart));
+      }
+    } catch (e) {}
   }, [cart]);
 
   // Dynamic SEO & ItemList JSON-LD Schema
   useEffect(() => {
-    if (tracks.length === 0) return;
+    if (!Array.isArray(tracks) || tracks.length === 0) return;
 
     const existingScript = document.getElementById('dynamic-tracks-schema');
     if (existingScript) existingScript.remove();
 
-    const itemListSchema = {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "أعمال استوديو زفات تباريك الصوتية",
-      "description": "مجموعة الأعمال الصوتية الحصرية من استوديو زفات تباريك - شيلات، زفات، أناشيد",
-      "url": typeof window !== 'undefined' ? window.location.href : '',
-      "numberOfItems": tracks.length,
-      "itemListElement": tracks.map((track, index) => {
-        return {
-          "@type": "ListItem",
-          "position": index + 1,
-          "item": {
-            "@context": "https://schema.org",
-            "@type": "MusicRecording",
-            "@id": typeof window !== 'undefined' ? `${window.location.origin}/#track-${encodeURIComponent(track.title)}` : '',
-            "name": track.title,
-            "description": track.description || `${track.title} - من إنتاج استوديو زفات تباريك للصوتيات`,
-            "duration": track.duration || "PT3M",
-            "url": typeof window !== 'undefined' ? `${window.location.origin}/#track-${encodeURIComponent(track.title)}` : '',
-            "image": track.cover_image_url || "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
-            "genre": track.filters ? track.filters.join(', ') : 'شيلات',
-            "inAlbum": {
-              "@type": "MusicAlbum",
-              "name": "أعمال استوديو زفات تباريك",
+    try {
+      const itemListSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "أعمال استوديو زفات تباريك الصوتية",
+        "description": "مجموعة الأعمال الصوتية الحصرية من استوديو زفات تباريك - شيلات، زفات، أناشيد",
+        "url": typeof window !== 'undefined' ? window.location.href : '',
+        "numberOfItems": tracks.length,
+        "itemListElement": tracks.map((track, index) => {
+          const trackTitle = track?.title || 'عمل صوتي';
+          return {
+            "@type": "ListItem",
+            "position": index + 1,
+            "item": {
+              "@context": "https://schema.org",
+              "@type": "MusicRecording",
+              "@id": typeof window !== 'undefined' ? `${window.location.origin}/#track-${encodeURIComponent(trackTitle)}` : '',
+              "name": trackTitle,
+              "description": track?.description || `${trackTitle} - من إنتاج استوديو زفات تباريك للصوتيات`,
+              "duration": track?.duration || "PT3M",
+              "url": typeof window !== 'undefined' ? `${window.location.origin}/#track-${encodeURIComponent(trackTitle)}` : '',
+              "image": track?.cover_image_url || "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
+              "genre": Array.isArray(track?.filters) ? track.filters.join(', ') : 'شيلات',
+              "inAlbum": {
+                "@type": "MusicAlbum",
+                "name": "أعمال استوديو زفات تباريك",
+                "byArtist": {
+                  "@type": "MusicGroup",
+                  "name": "استوديو زفات تباريك للصوتيات"
+                }
+              },
               "byArtist": {
                 "@type": "MusicGroup",
-                "name": "استوديو زفات تباريك للصوتيات"
-              }
-            },
-            "byArtist": {
-              "@type": "MusicGroup",
-              "name": track.artists?.name || track.artist || "استوديو زفات تباريك"
-            },
-            "isAccessibleForFree": true,
-            "keywords": `${track.title}, شيلات, زفات, استوديو زفات تباريك, ${track.filters?.join(', ') || ''}`
-          }
-        };
-      })
-    };
+                "name": track?.artists?.name || track?.artist || "استوديو زفات تباريك"
+              },
+              "isAccessibleForFree": true,
+              "keywords": `${trackTitle}, شيلات, زفات, استوديو زفات تباريك, ${Array.isArray(track?.filters) ? track.filters.join(', ') : ''}`
+            }
+          };
+        })
+      };
 
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.id = 'dynamic-tracks-schema';
-    script.textContent = JSON.stringify(itemListSchema);
-    document.head.appendChild(script);
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = 'dynamic-tracks-schema';
+      script.textContent = JSON.stringify(itemListSchema);
+      document.head.appendChild(script);
 
-    document.title = `استوديو زفات تباريك للصوتيات | ${tracks.length} عمل صوتي - شيلات، زفات، أناشيد`;
+      document.title = `استوديو زفات تباريك للصوتيات | ${tracks.length} عمل صوتي - شيلات، زفات، أناشيد`;
+    } catch (err) {
+      console.error("Error inserting dynamic JSON-LD schema:", err);
+    }
 
     return () => {
       const s = document.getElementById('dynamic-tracks-schema');
@@ -297,28 +320,33 @@ export default function Home() {
 
         if (tracksRes.ok) {
           const tData = await tracksRes.json();
-          if (tData) {
+          if (Array.isArray(tData)) {
             setTracks(tData);
             if (tData.length > 0) {
               setCurrentTrack(tData[0]);
             }
+          } else {
+            setTracks([]);
           }
         }
         if (artistsRes.ok) {
           const aData = await artistsRes.json();
-          if (aData) setArtists(aData);
+          if (Array.isArray(aData)) setArtists(aData);
+          else setArtists([]);
         }
         if (comingRes.ok) {
           const cData = await comingRes.json();
-          if (cData) setComingSoon(cData);
+          if (Array.isArray(cData)) setComingSoon(cData);
+          else setComingSoon([]);
         }
         if (filtersRes.ok) {
           const fData = await filtersRes.json();
-          if (fData) setFilters(fData);
+          if (Array.isArray(fData)) setFilters(fData);
+          else setFilters([]);
         }
         if (favoritesRes && favoritesRes.ok) {
           const fvData = await favoritesRes.json();
-          if (fvData) setSavedTrackIds(fvData);
+          if (Array.isArray(fvData)) setSavedTrackIds(fvData);
         }
 
       } catch (err) {
