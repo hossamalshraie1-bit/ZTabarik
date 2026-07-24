@@ -660,9 +660,9 @@ export default function Home() {
                     <a href="#all-works" className="section-link" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); }}>عرض الكل</a>
                   </div>
 
-                  <div 
-                    className="horizontal-scroll" 
-                    ref={latestScrollRef} 
+                  <div
+                    className="horizontal-scroll"
+                    ref={latestScrollRef}
                     role="list"
                     onMouseDown={() => { isScrollPaused.current = true; }}
                     onMouseUp={() => { isScrollPaused.current = false; }}
@@ -771,9 +771,9 @@ export default function Home() {
                     <h2 id="artists-title" className="section-title">كبار فنانين المنصة 💫</h2>
                   </div>
 
-                  <div 
-                    className="horizontal-scroll" 
-                    ref={artistsScrollRef} 
+                  <div
+                    className="horizontal-scroll"
+                    ref={artistsScrollRef}
                     style={{ paddingBottom: '24px' }}
                     onMouseDown={() => { isScrollPaused.current = true; }}
                     onMouseUp={() => { isScrollPaused.current = false; }}
@@ -1350,11 +1350,11 @@ export default function Home() {
                     <span>اطلب مثل</span>
                   </button>
 
-                   <button
+                  <button
                     onClick={(e) => {
                       e.stopPropagation();
                       const url = typeof window !== 'undefined' ? window.location.origin + `/#track-${encodeURIComponent(currentTrack.title)}` : '';
-                      
+
                       const copyLinkFallback = () => {
                         if (navigator.clipboard && navigator.clipboard.writeText) {
                           navigator.clipboard.writeText(url)
