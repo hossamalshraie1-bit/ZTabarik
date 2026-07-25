@@ -526,6 +526,11 @@ export default function Home() {
           {/* App Header */}
           {activeTab !== 'artist_detail' && (
             <header className="app-header">
+              <div className="header-logo">
+                <h1 className="logo-circle" title="استوديو زفات تباريك للصوتيات">🎸</h1>
+                <span className="studio-name-desktop">استوديو زفات تباريك للصوتيات</span>
+              </div>
+
               <div className="header-left">
                 <button
                   className="icon-btn"
@@ -547,10 +552,6 @@ export default function Home() {
                   <ShoppingBag size={18} />
                   {cart.length > 0 && <span className="icon-badge">{cart.length}</span>}
                 </button>
-              </div>
-
-              <div className="header-logo">
-                <h1 className="logo-circle" title="استوديو زفات يباريك للصوتيات">🎸</h1>
               </div>
             </header>
           )}
@@ -1184,7 +1185,7 @@ export default function Home() {
                           )}
                         </div>
                         <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '0.95rem', fontWeight: '700' }}>{track.title}</div>
+                          <div style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-primary)' }}>{track.title}</div>
                           <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{track.artists?.name || track.artist || 'استوديو زفات تباريك'}</div>
                         </div>
                         <div style={{ display: 'flex', gap: '8px' }}>
@@ -1230,7 +1231,7 @@ export default function Home() {
                       </div>
 
                       <div style={{ flex: 1 }}>
-                        <div style={{ fontSize: '0.9rem', fontWeight: '700' }}>{track.title}</div>
+                        <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-primary)' }}>{track.title}</div>
                         <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{track.artists?.name || track.artist || 'استوديو زفات تباريك'}</div>
                       </div>
 
@@ -1273,7 +1274,7 @@ export default function Home() {
                         </div>
 
                         <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '0.9rem', fontWeight: '700' }}>{track.title}</div>
+                          <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-primary)' }}>{track.title}</div>
                           <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{track.artists?.name || track.artist || 'استوديو زفات تباريك'}</div>
                         </div>
 
@@ -1513,8 +1514,8 @@ export default function Home() {
                         <label className="form-label" style={{ color: 'var(--accent-color)' }}>الأعمال المختارة كمرجع للطلب:</label>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                           {cart.map((item) => (
-                            <div key={`cart-${item.id}`} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: 'var(--bg-primary)', borderRadius: '6px', fontSize: '0.8rem', border: '1px solid var(--border-color)' }}>
-                              <span style={{ fontWeight: 'bold' }}>{item.title}</span>
+                            <div key={`cart-${item.id}`} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 10px', background: 'var(--bg-primary)', borderRadius: '6px', fontSize: '0.8rem', border: '1px solid var(--border-color)', alignItems: 'center' }}>
+                              <span style={{ fontWeight: 'bold', color: 'var(--text-primary)' }}>{item.title}</span>
                               <button type="button" onClick={() => removeFromCart(item.id)} style={{ color: '#ef4444', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}>حذف</button>
                             </div>
                           ))}

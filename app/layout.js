@@ -4,6 +4,14 @@ export const metadata = {
   title: 'استوديو زفات تباريك للصوتيات | شيلات، زفات، أناشيد',
   description: 'الموقع الرسمي لاستوديو زفات تباريك للصوتيات - شيلات حماسية بالأسماء، زفات أفراح فخمة، تسجيل وتوزيع صوتي احترافي.',
   manifest: '/manifest.json',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon.svg', type: 'image/svg+xml' }
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   verification: {
     google: 'google4603cba6b6bb4bbc',
   },
@@ -18,6 +26,14 @@ export const metadata = {
     siteName: 'استوديو زفات تباريك للصوتيات',
     locale: 'ar_SA',
     type: 'website',
+    images: [
+      {
+        url: '/icon.svg',
+        width: 512,
+        height: 512,
+        alt: 'استوديو زفات تباريك للصوتيات',
+      },
+    ],
   },
 };
 

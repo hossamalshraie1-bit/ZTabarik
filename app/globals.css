@@ -234,6 +234,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 
 .logo-circle {
@@ -247,6 +248,21 @@ body {
   color: #fff;
   font-weight: bold;
   font-size: 1.1rem;
+}
+
+.studio-name-desktop {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .studio-name-desktop {
+    display: inline-block !important;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    font-family: var(--font-arabic);
+    white-space: nowrap;
+  }
 }
 
 .category-tabs-container {
@@ -768,6 +784,11 @@ body {
   font-size: 0.9rem;
   font-family: var(--font-arabic);
   width: 100%;
+}
+
+.form-input option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .form-input:focus {
