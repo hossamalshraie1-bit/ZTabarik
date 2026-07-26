@@ -527,7 +527,9 @@ export default function Home() {
           {activeTab !== 'artist_detail' && (
             <header className="app-header">
               <div className="header-logo">
-                <h1 className="logo-circle" title="استوديو زفات تباريك للصوتيات">🎸</h1>
+                <h1 className="logo-circle" title="استوديو زفات تباريك للصوتيات">
+                  <img src="/logo.png" alt="استوديو زفات تباريك" style={{ width: '24px', height: '24px', objectFit: 'contain' }} />
+                </h1>
                 <span className="studio-name-desktop">استوديو زفات تباريك للصوتيات</span>
               </div>
 

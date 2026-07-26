@@ -241,13 +241,15 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #334155;
+  background: #ffffff;
+  border: 1px solid var(--accent-color);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   font-weight: bold;
   font-size: 1.1rem;
+  overflow: hidden;
 }
 
 .studio-name-desktop {
