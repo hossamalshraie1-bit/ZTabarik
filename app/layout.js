@@ -6,7 +6,7 @@ export const metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: 'زفات تباريك',
+    default: 'استوديو زفات تباريك للصوتيات | أرقى الشيلات والزفات بالأسماء',
     template: '%s | زفات تباريك',
   },
 
