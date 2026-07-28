@@ -107,12 +107,15 @@ export const metadata = {
   // تم التعديل هنا: تحديد المقاسات ونوع الملف إجبارياً ليقرأه زاحف جوجل
   icons: {
     icon: [
-      { url: ICON, type: 'image/png', sizes: '96x96' },
-      { url: ICON, type: 'image/png', sizes: '192x192' } // اختياري لدعم شاشات أكبر
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' } // هذا هو المقاس الذي سيعتمده جوجل
     ],
-    apple: [{ url: ICON, type: 'image/png' }],
-    shortcut: [ICON],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ],
+    shortcut: ['/favicon-32x32.png'],
   },
+
 
   manifest: '/manifest.json',
 
