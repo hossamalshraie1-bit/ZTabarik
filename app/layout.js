@@ -2,7 +2,7 @@ import './globals.css';
 
 const SITE_NAME = 'زفات تباريك';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://z-tabarik.vercel.app';
-const ICON = '/android-chrome-512x512.png';
+const ICON = '/logo.png';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -21,6 +21,12 @@ export const metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
     images: [{ url: ICON }],
+  },
+
+  icons: {
+    icon: ICON,
+    apple: ICON,
+    shortcut: ICON,
   },
 
   manifest: '/manifest.json',
