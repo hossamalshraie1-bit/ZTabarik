@@ -100,8 +100,8 @@ export const metadata = {
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'استوديو زفات تباريك للصوتيات',
-  alternateName: 'زفات تباريك',
+  name: 'زفات تباريك',
+  alternateName: 'ZAFZT TABARIK',
   image: `${siteUrl}/android-chrome-512x512.png`,
   '@id': siteUrl,
   url: siteUrl,
