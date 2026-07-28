@@ -4,93 +4,13 @@
 
   <!-- الصفحة الرئيسية -->
   <url>
-    <loc>https://z-tabarik.app/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <loc>https://z-tabarik.vercel.app/</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://z-tabarik.app/" />
-  </url>
-
-  <!-- صفحة كل الأعمال -->
-  <url>
-    <loc>https://z-tabarik.app/#works</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- صفحة الفنانين -->
-  <url>
-    <loc>https://z-tabarik.app/#artists</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- صفحة الطلبات -->
-  <url>
-    <loc>https://z-tabarik.app/#booking</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- الأعمال الصوتية -->
-  <url>
-    <loc>https://z-tabarik.app/#track-احلى-خريجة</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://z-tabarik.app/#track-للشعر-سيرة</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://z-tabarik.app/#track-حان-ميعاد-الفرح</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://z-tabarik.app/#track-زفات-حسب-الطلب</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- الفنانون -->
-  <url>
-    <loc>https://z-tabarik.app/#artist-زفات</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://z-tabarik.app/#artist-اغاني-عربية</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://z-tabarik.app/#artist-المهندس-حسام</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://z-tabarik.app/#artist-راشد-الماجد</loc>
-    <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://z-tabarik.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://z-tabarik.vercel.app/" />
   </url>
 
 </urlset>
+

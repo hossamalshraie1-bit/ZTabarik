@@ -1,12 +1,12 @@
 import './globals.css';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://z-tabarik.app';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://z-tabarik.vercel.app';
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: 'استوديو زفات تباريك للصوتيات | أرقى الشيلات والزفات بالأسماء',
+    default: 'زفات تباريك',
     template: '%s | زفات تباريك',
   },
 
@@ -33,10 +33,10 @@ export const metadata = {
   publisher: 'استوديو زفات تباريك للصوتيات',
 
   alternates: {
-    canonical: '/',
+    canonical: siteUrl,
     languages: {
-      'ar': '/',
-      'x-default': '/',
+      'ar': siteUrl,
+      'x-default': siteUrl,
     },
   },
 
@@ -105,8 +105,8 @@ export const metadata = {
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'استوديو زفات تباريك للصوتيات',
-  alternateName: 'زفات تباريك',
+  name: metadata.title.default,
+  alternateName: 'استوديو زفات تباريك للصوتيات',
   image: `${siteUrl}/apple-touch-icon.png`,
   '@id': siteUrl,
   url: siteUrl,
