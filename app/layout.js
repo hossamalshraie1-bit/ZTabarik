@@ -31,37 +31,37 @@ export const metadata = {
   publisher: 'استوديو زفات تباريك للصوتيات',
 
   alternates: {
-    canonical: 'https://z-tabarik.vercel.app',
+    canonical: '/',
     languages: {
-      'ar': 'https://z-tabarik.vercel.app',
-      'x-default': 'https://z-tabarik.vercel.app',
+      'ar': '/',
+      'x-default': '/',
     },
   },
 
   openGraph: {
     type: 'website',
-    locale: 'ar_YE',
+    locale: 'ar_SA',
     url: 'https://z-tabarik.vercel.app',
-    siteName: 'استوديو زفات تباريك للصوتيات | Zafatik Tabarik Studio',
+    siteName: 'استوديو زفات تباريك للصوتيات',
     title: 'استوديو زفات تباريك للصوتيات | أرقى الشيلات والزفات بالأسماء',
     description:
       'استوديو زفات تباريك للصوتيات: متخصصون في إنتاج وتجهيز أرقى الشيلات والزفات بالأسماء والهندسة الصوتية بأحدث التقنيات العالمية.',
     images: [
       {
-        url: 'https://z-tabarik.vercel.app/apple-touch-icon.png',
+        url: '/apple-touch-icon.png',
         width: 1200,
         height: 630,
-        alt: 'شعار استوديو زفات تباريك للصوتيات',
+        alt: 'استوديو زفات تباريك للصوتيات',
       },
     ],
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: 'استوديو زفات تباريك للصوتيات | Zafatik Tabarik Studio',
+    title: 'استوديو زفات تباريك للصوتيات',
     description:
       'فخامة الهندسة الصوتية والإنتاج الفني في السعودية. شيلات حماسية وزفات بالأسماء.',
-    images: ['https://z-tabarik.vercel.app/apple-touch-icon.png'],
+    images: ['/apple-touch-icon.png'],
   },
 
   robots: {
@@ -99,12 +99,12 @@ export const metadata = {
   },
 };
 
-// JSON-LD LocalBusiness Structured Data (Standard schema format for Google Search rich features)
+// JSON-LD LocalBusiness Structured Data
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'استوديو زفات تباريك للصوتيات',
-  alternateName: 'Zafatik Tabarik Studio',
+  alternateName: 'زفات تباريك',
   image: 'https://z-tabarik.vercel.app/apple-touch-icon.png',
   '@id': 'https://z-tabarik.vercel.app',
   url: 'https://z-tabarik.vercel.app',
@@ -128,38 +128,18 @@ const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'استوديو زفات تباريك للصوتيات',
-  alternateName: 'Zafatik Tabarik Studio',
+  alternateName: ['زفات تباريك', 'استوديو زفات تباريك'],
   url: 'https://z-tabarik.vercel.app',
   description: 'الموقع الرسمي لاستوديو زفات تباريك في الرياض، السعودية',
   inLanguage: 'ar',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: 'https://z-tabarik.vercel.app/?q={search_term_string}',
-    'query-input': 'required name=search_term_string',
-  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0d0d0d" />
         <meta name="msapplication-TileColor" content="#0d0d0d" />
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
-        <meta name="google-site-verification" content="google4603cba6b6bb4bbc" />
-
-        <link rel="canonical" href="https://z-tabarik.vercel.app" />
-        <link rel="alternate" hrefLang="ar" href="https://z-tabarik.vercel.app" />
-        <link rel="alternate" hrefLang="x-default" href="https://z-tabarik.vercel.app" />
-
-        {/* Favicons & Icons for Google Search Indexing */}
-        <link rel="icon" href="/apple-touch-icon.png" />
-        <link rel="shortcut icon" href="/apple-touch-icon.png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
 
         {/* Preconnect for Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -181,4 +161,5 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
 
