@@ -140,6 +140,14 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="theme-color" content="#0d0d0d" />
         <meta name="msapplication-TileColor" content="#0d0d0d" />
+        <meta property="og:site_name" content="استوديو زفات تباريك للصوتيات" />
+
+        {/* Explicit Favicon Links for Google Search Favicon Crawler */}
+        <link rel="icon" href="/favicon.ico" sizes="48x48" />
+        <link rel="icon" type="image/png" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="/apple-touch-icon.png" />
 
         {/* Preconnect for Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

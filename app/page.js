@@ -529,18 +529,18 @@ export default function Home() {
           {/* App Header */}
           {activeTab !== 'artist_detail' && (
             <header className="app-header">
-              <div
+              <h1
                 className="header-logo"
                 onClick={() => setActiveTab('about')}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: 'pointer', margin: 0, padding: 0, fontSize: 'inherit', fontWeight: 'normal', display: 'flex', alignItems: 'center', gap: '8px' }}
                 title="عن الاستوديو"
               >
-                <h1 className="logo-circle" title="استوديو زفات تباريك للصوتيات">
-                  <img src="/logo.png" alt="استوديو زفات تباريك" style={{ width: '38px', height: '38px', objectFit: 'contain' }} />
-                </h1>
+                <span className="logo-circle" title="استوديو زفات تباريك للصوتيات">
+                  <img src="/apple-touch-icon.png" alt="استوديو زفات تباريك للصوتيات" style={{ width: '38px', height: '38px', objectFit: 'contain' }} />
+                </span>
                 <span className="studio-name-desktop">استوديو زفات تباريك للصوتيات</span>
                 <span className="studio-name-mobile">ZAFAT TABARIK</span>
-              </div>
+              </h1>
 
               <div className="header-left">
                 <button
