@@ -558,32 +558,84 @@ export default function AdminPage() {
 
           {/* FILTERS */}
           {section === 'filters' && (
-            <Section title="الفلاتر" subtitle="التبويبات التي تظهر في صفحة كل فنان لفلترة أعماله"
-              onAdd={() => setModal({ type: 'filter', data: { label: '', filter_group: 'style' } })} addLabel="إضافة فلتر">
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                {filters.map(f => {
-                  const isStyle = f.filter_group === 'style';
-                  return (
-                    <div key={f.id} style={{
-                      display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px',
-                      background: isStyle ? 'rgba(204,164,59,0.08)' : 'rgba(168,85,247,0.08)',
-                      border: `1px solid ${isStyle ? '#cca43b' : '#a855f7'}`,
-                      borderRadius: '40px',
-                      color: 'var(--text-primary)',
-                      transition: 'all 0.2s'
-                    }}>
-                      <span style={{ fontSize: '0.85rem' }}>{isStyle ? '🎵' : '🏷️'}</span>
-                      <span style={{ fontWeight: '700', fontSize: '0.84rem' }}>{f.label}</span>
-                      <span style={{ fontSize: '0.65rem', opacity: 0.7, padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '10px' }}>
-                        {isStyle ? 'نمط' : 'نوع'}
-                      </span>
-                      <button onClick={() => setModal({ type: 'filter', data: { ...f } })} style={smBtn('#cca43b')}><Edit size={12} /></button>
-                      <button onClick={() => remove('filters', setFilters, f.id)} style={smBtn('#ef4444')}><Trash2 size={12} /></button>
-                    </div>
-                  );
-                })}
+            <Section title="إدارة الفلاتر الشجرية" subtitle="إدارة الفلاتر بـ 4 مستويات مرتبطة (نمط العمل، تصنيف رئيسي، تصنيف فرعي، فرعي دقيق)"
+              onAdd={() => setModal({ type: 'filter', data: { label: '', filter_group: 'style', parent_id: null, parent_label: '' } })} addLabel="إضافة فلتر جديد">
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+
+                {/* Level 1: Style */}
+                <div>
+                  <h3 style={{ fontSize: '0.92rem', fontWeight: '800', marginBottom: '10px', color: '#cca43b', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    🎵 1. أنماط العمل (Style)
+                  </h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {filters.filter(f => f.filter_group === 'style').map(f => (
+                      <div key={f.id} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 14px', background: 'rgba(204,164,59,0.08)', border: '1px solid #cca43b', borderRadius: '30px', color: 'var(--text-primary)' }}>
+                        <span style={{ fontWeight: '700', fontSize: '0.84rem' }}>{f.label}</span>
+                        <button onClick={() => setModal({ type: 'filter', data: { ...f } })} style={smBtn('#cca43b')}><Edit size={12} /></button>
+                        <button onClick={() => remove('filters', setFilters, f.id)} style={smBtn('#ef4444')}><Trash2 size={12} /></button>
+                      </div>
+                    ))}
+                    {filters.filter(f => f.filter_group === 'style').length === 0 && <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>لا توجد أنماط بعد</span>}
+                  </div>
+                </div>
+
+                {/* Level 2: Main Category */}
+                <div>
+                  <h3 style={{ fontSize: '0.92rem', fontWeight: '800', marginBottom: '10px', color: '#a855f7', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    🏷️ 2. التصنيفات الرئيسية (Category) — المستويات الأولى (زفات، شيلات، الخ)
+                  </h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {filters.filter(f => f.filter_group === 'category' || (!f.filter_group || f.filter_group === 'category')).map(f => (
+                      <div key={f.id} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 14px', background: 'rgba(168,85,247,0.08)', border: '1px solid #a855f7', borderRadius: '30px', color: 'var(--text-primary)' }}>
+                        <span style={{ fontWeight: '700', fontSize: '0.84rem' }}>{f.label}</span>
+                        <button onClick={() => setModal({ type: 'filter', data: { ...f } })} style={smBtn('#a855f7')}><Edit size={12} /></button>
+                        <button onClick={() => remove('filters', setFilters, f.id)} style={smBtn('#ef4444')}><Trash2 size={12} /></button>
+                      </div>
+                    ))}
+                    {filters.filter(f => f.filter_group === 'category').length === 0 && <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>لا توجد تصنيفات رئيسية بعد</span>}
+                  </div>
+                </div>
+
+                {/* Level 3: Sub Category */}
+                <div>
+                  <h3 style={{ fontSize: '0.92rem', fontWeight: '800', marginBottom: '10px', color: '#3b82f6', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    📂 3. التصنيفات الفرعية (Sub Category) — مرتبطة بتصنيف رئيسي (مثال: شيلات تخرج)
+                  </h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {filters.filter(f => f.filter_group === 'sub_category').map(f => (
+                      <div key={f.id} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 14px', background: 'rgba(59,130,246,0.08)', border: '1px solid #3b82f6', borderRadius: '30px', color: 'var(--text-primary)' }}>
+                        <span style={{ fontWeight: '700', fontSize: '0.84rem' }}>{f.label}</span>
+                        {f.parent_label && <span style={{ fontSize: '0.67rem', color: '#3b82f6', background: 'rgba(59,130,246,0.15)', padding: '2px 8px', borderRadius: '10px' }}>↳ {f.parent_label}</span>}
+                        <button onClick={() => setModal({ type: 'filter', data: { ...f } })} style={smBtn('#3b82f6')}><Edit size={12} /></button>
+                        <button onClick={() => remove('filters', setFilters, f.id)} style={smBtn('#ef4444')}><Trash2 size={12} /></button>
+                      </div>
+                    ))}
+                    {filters.filter(f => f.filter_group === 'sub_category').length === 0 && <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>لا توجد تصنيفات فرعية بعد</span>}
+                  </div>
+                </div>
+
+                {/* Level 4: Sub Sub Category */}
+                <div>
+                  <h3 style={{ fontSize: '0.92rem', fontWeight: '800', marginBottom: '10px', color: '#10b981', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    📄 4. التصنيفات الفرعية الدقيقة (Sub Sub Category) — مرتبطة بتصنيف فرعي (مثال: تخرج جامعة)
+                  </h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {filters.filter(f => f.filter_group === 'sub_sub_category').map(f => (
+                      <div key={f.id} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 14px', background: 'rgba(16,185,129,0.08)', border: '1px solid #10b981', borderRadius: '30px', color: 'var(--text-primary)' }}>
+                        <span style={{ fontWeight: '700', fontSize: '0.84rem' }}>{f.label}</span>
+                        {f.parent_label && <span style={{ fontSize: '0.67rem', color: '#10b981', background: 'rgba(16,185,129,0.15)', padding: '2px 8px', borderRadius: '10px' }}>↳ {f.parent_label}</span>}
+                        <button onClick={() => setModal({ type: 'filter', data: { ...f } })} style={smBtn('#10b981')}><Edit size={12} /></button>
+                        <button onClick={() => remove('filters', setFilters, f.id)} style={smBtn('#ef4444')}><Trash2 size={12} /></button>
+                      </div>
+                    ))}
+                    {filters.filter(f => f.filter_group === 'sub_sub_category').length === 0 && <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>لا توجد تصنيفات فرعية دقيقة بعد</span>}
+                  </div>
+                </div>
+
               </div>
-              <Info>الفلاتر المميزة بـ 🎵 تظهر كخيار لنمط العمل (مع/بدون موسيقى)، بينما المميزة بـ 🏷️ تظهر لنوع العمل (شيلات/زفات).</Info>
+
+              <Info>تتيح لك الفلاتر الشجرية الربط التلقائي بين التصنيفات. مثال: اختار (شيلات) كـ أب لـ (شيلات تخرج)، واختار (شيلات تخرج) كـ أب لـ (تخرج من الجامعة).</Info>
             </Section>
           )}
 
@@ -636,7 +688,7 @@ export default function AdminPage() {
       )}
       {modal?.type === 'filter' && (
         <Modal title={modal.data.id ? 'تعديل فلتر' : 'إضافة فلتر'} onClose={() => setModal(null)}>
-          <FilterForm init={modal.data} onSave={item => upsert('filters', filters, setFilters, item)} onCancel={() => setModal(null)} />
+          <FilterForm init={modal.data} allFilters={filters} onSave={item => upsert('filters', filters, setFilters, item)} onCancel={() => setModal(null)} />
         </Modal>
       )}
 
@@ -934,54 +986,45 @@ function TrackForm({ init, artists, filters, onSave, onCancel }) {
       </div>
 
       <div>
-        <label style={lbl}>الفلاتر المرتبطة</label>
+        <label style={lbl}>الفلاتر المرتبطة بالعمل الصوتي</label>
         {(() => {
-          const styleFilters = filters.filter(fl => fl.filter_group === 'style');
-          const categoryFilters = filters.filter(fl => fl.filter_group !== 'style');
+          const styleFs = filters.filter(fl => fl.filter_group === 'style');
+          const catFs = filters.filter(fl => fl.filter_group === 'category' || (!fl.filter_group || fl.filter_group === 'category'));
+          const subCatFs = filters.filter(fl => fl.filter_group === 'sub_category');
+          const subSubCatFs = filters.filter(fl => fl.filter_group === 'sub_sub_category');
+
+          const renderGroup = (title, items, color) => {
+            if (!items || items.length === 0) return null;
+            return (
+              <div style={{ marginBottom: '10px' }}>
+                <div style={{ fontSize: '0.72rem', color: color, marginBottom: '6px', fontWeight: '700' }}>{title}</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
+                  {items.map(fl => {
+                    const on = f.filters.includes(fl.label);
+                    return (
+                      <button key={fl.id} type="button" onClick={() => toggleFilter(fl.label)} style={{
+                        padding: '6px 13px', borderRadius: '30px', cursor: 'pointer',
+                        fontFamily: 'Cairo, sans-serif', fontWeight: '600', fontSize: '0.78rem',
+                        border: `1px solid ${on ? color : 'rgba(255,255,255,0.1)'}`,
+                        background: on ? `${color}25` : 'rgba(255,255,255,0.04)',
+                        color: on ? color : '#aeaeae', transition: 'all 0.14s'
+                      }}>
+                        {on ? '✓ ' : ''}{fl.label}
+                        {fl.parent_label ? ` (↳ ${fl.parent_label})` : ''}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          };
+
           return (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '6px' }}>
-              {styleFilters.length > 0 && (
-                <div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: '6px', fontWeight: '700' }}>🎵 نمط العمل (مع موسيقى / بدون موسيقى...)</div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
-                    {styleFilters.map(fl => {
-                      const on = f.filters.includes(fl.label);
-                      return (
-                        <button key={fl.id} type="button" onClick={() => toggleFilter(fl.label)} style={{
-                          padding: '6px 14px', borderRadius: '30px', cursor: 'pointer',
-                          fontFamily: 'Cairo, sans-serif', fontWeight: '600', fontSize: '0.8rem',
-                          border: `1px solid ${on ? '#cca43b' : 'rgba(255,255,255,0.1)'}`,
-                          background: on ? 'rgba(204,164,59,0.18)' : 'rgba(255,255,255,0.04)',
-                          color: on ? '#cca43b' : '#aeaeae', transition: 'all 0.14s'
-                        }}>
-                          {on ? '✓ ' : ''}{fl.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-              {categoryFilters.length > 0 && (
-                <div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: '6px', fontWeight: '700' }}>🏷️ نوع العمل (شيلات / زفات / أناشيد...)</div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
-                    {categoryFilters.map(fl => {
-                      const on = f.filters.includes(fl.label);
-                      return (
-                        <button key={fl.id} type="button" onClick={() => toggleFilter(fl.label)} style={{
-                          padding: '6px 14px', borderRadius: '30px', cursor: 'pointer',
-                          fontFamily: 'Cairo, sans-serif', fontWeight: '600', fontSize: '0.8rem',
-                          border: `1px solid ${on ? '#a855f7' : 'rgba(255,255,255,0.1)'}`,
-                          background: on ? 'rgba(168,85,247,0.14)' : 'rgba(255,255,255,0.04)',
-                          color: on ? '#a855f7' : '#aeaeae', transition: 'all 0.14s'
-                        }}>
-                          {on ? '✓ ' : ''}{fl.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '6px', padding: '12px', background: 'var(--bg-tertiary)', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+              {renderGroup('🎵 1. نمط العمل (Style)', styleFs, '#cca43b')}
+              {renderGroup('🏷️ 2. التصنيف الرئيسي (Category)', catFs, '#a855f7')}
+              {renderGroup('📂 3. التصنيف الفرعي (Sub Category)', subCatFs, '#3b82f6')}
+              {renderGroup('📄 4. التصنيف الفرعي الدقيق (Sub Sub Category)', subSubCatFs, '#10b981')}
             </div>
           );
         })()}
@@ -1035,47 +1078,150 @@ function ArtistForm({ init, onSave, onCancel }) {
   );
 }
 
-function FilterForm({ init, onSave, onCancel }) {
-  const [f, setF] = useState({ label: '', filter_group: 'style', ...init });
+function FilterForm({ init, allFilters = [], onSave, onCancel }) {
+  const [f, setF] = useState({
+    label: '',
+    filter_group: 'style',
+    parent_id: null,
+    parent_label: '',
+    ...init
+  });
+
+  const categories = allFilters.filter(fl => fl.filter_group === 'category' || (!fl.filter_group || fl.filter_group === 'category'));
+  const subCategories = allFilters.filter(fl => fl.filter_group === 'sub_category');
+
+  const handleGroupChange = (group) => {
+    setF(p => ({
+      ...p,
+      filter_group: group,
+      parent_id: null,
+      parent_label: ''
+    }));
+  };
+
+  const handleParentSelect = (parentFilterId) => {
+    const parent = allFilters.find(x => String(x.id) === String(parentFilterId));
+    setF(p => ({
+      ...p,
+      parent_id: parent ? parent.id : null,
+      parent_label: parent ? parent.label : ''
+    }));
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-      <Field label="اسم الفلتر" value={f.label} onChange={v => setF(p => ({ ...p, label: v }))} placeholder="مثال: مع موسيقى" />
+      <Field label="اسم الفلتر" value={f.label} onChange={v => setF(p => ({ ...p, label: v }))} placeholder="مثال: شيلات تخرج، تخرج جامعة..." />
 
       <div>
-        <label style={lbl}>نوع الفلتر</label>
-        <div style={{ display: 'flex', gap: '8px', marginTop: '6px' }}>
+        <label style={lbl}>نوع الفلتر (اختر نوعاً من المستويات الـ 4)</label>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginTop: '6px' }}>
           <button
             type="button"
-            onClick={() => setF(p => ({ ...p, filter_group: 'style' }))}
+            onClick={() => handleGroupChange('style')}
             style={{
-              flex: 1, padding: '10px', borderRadius: '10px', cursor: 'pointer',
-              fontFamily: 'Cairo, sans-serif', fontWeight: '700', fontSize: '0.82rem',
+              padding: '10px 6px', borderRadius: '10px', cursor: 'pointer',
+              fontFamily: 'Cairo, sans-serif', fontWeight: '700', fontSize: '0.78rem',
               border: `2px solid ${f.filter_group === 'style' ? '#cca43b' : 'var(--border-color)'}`,
               background: f.filter_group === 'style' ? 'rgba(204,164,59,0.15)' : 'var(--bg-tertiary)',
               color: f.filter_group === 'style' ? '#cca43b' : 'var(--text-secondary)',
-              transition: 'all 0.18s'
+              textAlign: 'center'
             }}
           >
-            🎵 نمط العمل<br />
-            <span style={{ fontSize: '0.68rem', opacity: 0.8 }}>مثال: مع موسيقى، بدون موسيقى</span>
+            🎵 1. نمط العمل<br />
+            <span style={{ fontSize: '0.66rem', opacity: 0.8 }}>مع/بدون موسيقى</span>
           </button>
+
           <button
             type="button"
-            onClick={() => setF(p => ({ ...p, filter_group: 'category' }))}
+            onClick={() => handleGroupChange('category')}
             style={{
-              flex: 1, padding: '10px', borderRadius: '10px', cursor: 'pointer',
-              fontFamily: 'Cairo, sans-serif', fontWeight: '700', fontSize: '0.82rem',
+              padding: '10px 6px', borderRadius: '10px', cursor: 'pointer',
+              fontFamily: 'Cairo, sans-serif', fontWeight: '700', fontSize: '0.78rem',
               border: `2px solid ${f.filter_group === 'category' ? '#a855f7' : 'var(--border-color)'}`,
               background: f.filter_group === 'category' ? 'rgba(168,85,247,0.12)' : 'var(--bg-tertiary)',
               color: f.filter_group === 'category' ? '#a855f7' : 'var(--text-secondary)',
-              transition: 'all 0.18s'
+              textAlign: 'center'
             }}
           >
-            🏷️ نوع العمل<br />
-            <span style={{ fontSize: '0.68rem', opacity: 0.8 }}>مثال: شيلات، زفات، أناشيد</span>
+            🏷️ 2. تصنيف رئيسي<br />
+            <span style={{ fontSize: '0.66rem', opacity: 0.8 }}>شيلات، زفات...</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleGroupChange('sub_category')}
+            style={{
+              padding: '10px 6px', borderRadius: '10px', cursor: 'pointer',
+              fontFamily: 'Cairo, sans-serif', fontWeight: '700', fontSize: '0.78rem',
+              border: `2px solid ${f.filter_group === 'sub_category' ? '#3b82f6' : 'var(--border-color)'}`,
+              background: f.filter_group === 'sub_category' ? 'rgba(59,130,246,0.12)' : 'var(--bg-tertiary)',
+              color: f.filter_group === 'sub_category' ? '#3b82f6' : 'var(--text-secondary)',
+              textAlign: 'center'
+            }}
+          >
+            📂 3. تصنيف فرعي<br />
+            <span style={{ fontSize: '0.66rem', opacity: 0.8 }}>مرتبط بتصنيف رئيسي</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleGroupChange('sub_sub_category')}
+            style={{
+              padding: '10px 6px', borderRadius: '10px', cursor: 'pointer',
+              fontFamily: 'Cairo, sans-serif', fontWeight: '700', fontSize: '0.78rem',
+              border: `2px solid ${f.filter_group === 'sub_sub_category' ? '#10b981' : 'var(--border-color)'}`,
+              background: f.filter_group === 'sub_sub_category' ? 'rgba(16,185,129,0.12)' : 'var(--bg-tertiary)',
+              color: f.filter_group === 'sub_sub_category' ? '#10b981' : 'var(--text-secondary)',
+              textAlign: 'center'
+            }}
+          >
+            📄 4. فرعي دقيق<br />
+            <span style={{ fontSize: '0.66rem', opacity: 0.8 }}>مرتبط بتصنيف فرعي</span>
           </button>
         </div>
       </div>
+
+      {/* Parent Selector for sub_category */}
+      {f.filter_group === 'sub_category' && (
+        <div>
+          <label style={lbl}>اختر التصنيف الرئيسي الأب (Parent Category)</label>
+          <select
+            value={f.parent_id || ''}
+            onChange={e => handleParentSelect(e.target.value)}
+            style={inp}
+          >
+            <option value="">— اختر التصنيف الرئيسي —</option>
+            {categories.map(c => (
+              <option key={c.id} value={c.id}>{c.label}</option>
+            ))}
+          </select>
+          <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+            مثال: إذا كان هذا الفلتر هو "شيلات تخرج"، اختر الأب "شيلات".
+          </p>
+        </div>
+      )}
+
+      {/* Parent Selector for sub_sub_category */}
+      {f.filter_group === 'sub_sub_category' && (
+        <div>
+          <label style={lbl}>اختر التصنيف الفرعي الأب (Parent Sub Category)</label>
+          <select
+            value={f.parent_id || ''}
+            onChange={e => handleParentSelect(e.target.value)}
+            style={inp}
+          >
+            <option value="">— اختر التصنيف الفرعي —</option>
+            {subCategories.map(sc => (
+              <option key={sc.id} value={sc.id}>
+                {sc.label} {sc.parent_label ? `(تابع لـ: ${sc.parent_label})` : ''}
+              </option>
+            ))}
+          </select>
+          <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+            مثال: إذا كان هذا الفلتر هو "تخرج من الجامعة"، اختر الأب "شيلات تخرج".
+          </p>
+        </div>
+      )}
 
       <FormActions onSave={() => onSave(f)} onCancel={onCancel} disabled={!f.label} />
     </div>

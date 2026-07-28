@@ -81,8 +81,11 @@ export default function Home() {
 
 
   // All Works view states
-  const [allWorksFilter, setAllWorksFilter] = useState('all');
   const [allWorksSearch, setAllWorksSearch] = useState('');
+  // Cascading filter selections: level1 = main type, level2 = sub-type, level3 = sub-sub-type
+  const [awLevel1, setAwLevel1] = useState('all'); // e.g. 'all', 'زفات', 'شيلات'
+  const [awLevel2, setAwLevel2] = useState('all'); // e.g. 'زفات عريس'
+  const [awLevel3, setAwLevel3] = useState('all'); // e.g. 'تخرج من الجامعة'
 
   // Loading state
   const [loading, setLoading] = useState(true);
@@ -115,7 +118,7 @@ export default function Home() {
       if (savedTrackIds.length > 0 || localStorage.getItem('studio_favorites')) {
         localStorage.setItem('studio_favorites', JSON.stringify(savedTrackIds));
       }
-    } catch (e) {}
+    } catch (e) { }
   }, [savedTrackIds]);
 
   useEffect(() => {
@@ -123,7 +126,7 @@ export default function Home() {
       if (cart.length > 0 || localStorage.getItem('studio_cart')) {
         localStorage.setItem('studio_cart', JSON.stringify(cart));
       }
-    } catch (e) {}
+    } catch (e) { }
   }, [cart]);
 
   // Dynamic SEO & ItemList JSON-LD Schema
@@ -479,7 +482,7 @@ export default function Home() {
 أتطلع للتواصل معي لمناقشة التفاصيل والأسعار والجدول الزمني المتاح للتنفيذ. شكراً لكم ولإبداعكم المستمر! ✨`;
 
     const encodedMessage = encodeURIComponent(message);
-    const studioWhatsAppNumber = '967776158797';
+    const studioWhatsAppNumber = '967779011548';
 
     setIsBookingOpen(false);
     window.open(`https://wa.me/${studioWhatsAppNumber}?text=${encodedMessage}`, '_blank');
@@ -526,11 +529,17 @@ export default function Home() {
           {/* App Header */}
           {activeTab !== 'artist_detail' && (
             <header className="app-header">
-              <div className="header-logo">
+              <div
+                className="header-logo"
+                onClick={() => setActiveTab('about')}
+                style={{ cursor: 'pointer' }}
+                title="عن الاستوديو"
+              >
                 <h1 className="logo-circle" title="استوديو زفات تباريك للصوتيات">
-                  <img src="/logo.png" alt="استوديو زفات تباريك" style={{ width: '24px', height: '24px', objectFit: 'contain' }} />
+                  <img src="/logo.png" alt="استوديو زفات تباريك" style={{ width: '38px', height: '38px', objectFit: 'contain' }} />
                 </h1>
                 <span className="studio-name-desktop">استوديو زفات تباريك للصوتيات</span>
+                <span className="studio-name-mobile">ZAFAT TABARIK</span>
               </div>
 
               <div className="header-left">
@@ -860,20 +869,56 @@ export default function Home() {
                 </section>
 
                 {/* Footer */}
-                <footer style={{ padding: '24px 16px 80px', borderTop: '1px solid var(--border-color)', marginTop: '24px', textAlign: 'center' }}>
+                <footer style={{ padding: '24px 16px 80px', borderTop: '1px solid var(--border-color)', marginTop: '24px', textAlign: 'center', marginBottom: '24px' }}>
                   <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.8', marginBottom: '8px' }}>
                     <strong>استوديو زفات تباريك للصوتيات</strong> — متخصصون في إنتاج{' '}
-                    <a href="#works" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); setAllWorksFilter('sheelat'); }} style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>الشيلات بالأسماء</a>،{' '}
-                    <a href="#works" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); setAllWorksFilter('zaffat'); }} style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>زفات الأفراح</a>،{' '}
+                    <a href="#works" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); setAwLevel1('شيلات'); setAwLevel2('all'); setAwLevel3('all'); }} style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>الشيلات بالأسماء</a>،{' '}
+                    <a href="#works" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); setAwLevel1('زفات'); setAwLevel2('all'); setAwLevel3('all'); }} style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>زفات الأفراح</a>،{' '}
                     الأناشيد, المكس والماستر الاحترافي، وتسجيل البودكاست.
                   </p>
-                  <address style={{ fontStyle: 'normal', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                  {/* <address style={{ fontStyle: 'normal', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                     تواصل معنا:{' '}
-                    <a href="https://wa.me/967776158797" style={{ color: 'var(--accent-color)', textDecoration: 'none' }} rel="noopener noreferrer" target="_blank">واتساب: 967776158797+</a>
-                  </address>
+                    <a href="https://wa.me/967779011548" style={{ color: 'var(--accent-color)', textDecoration: 'none' }} rel="noopener noreferrer" target="_blank">واتساب: 967779011548+</a>
+                  </address> */}
+                  <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', flexWrap: 'wrap' }}>
+                    {/* <span>تصميم وتطوير:</span> */}
+                    <a
+                      href="https://getsoft.vercel.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: 'var(--accent-color)',
+                        fontWeight: '900',
+                        textDecoration: 'none',
+                        padding: '3px 10px',
+                        borderRadius: '6px',
+                        background: 'rgba(204,164,59,0.1)',
+                        border: '1.5px solid rgba(249, 181, 9, 1)',
+                        transition: 'all 0.2s ease',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px'
+                      }}
+                    >
+                      <span>  تـصـمـيـم وتـطـويــر   :  </span>
+                      <img
+                        src="/get-soft.png"
+                        alt="GET SOFT Logo"
+                        style={{
+                          width: '18px',
+                          height: '18px',
+                          borderRadius: '4px',
+                          objectFit: 'cover',
+                          marginRight: '8px'
+                        }}
+                      />
+                      <span>شـركـة GET SOFT للبرمجيات</span>
+                    </a>
+                  </p>
                   <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '8px' }}>
                     © {new Date().getFullYear()} استوديو زفات تباريك للصوتيات. جميع الحقوق محفوظة.
                   </p>
+
                 </footer>
               </>
             )}
@@ -978,7 +1023,7 @@ export default function Home() {
                     {/* Dropdown 1: Style */}
                     {styleFilters.length > 0 && (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                        <label style={{ fontSize: '0.7rem', fontWeight: '700', color: 'var(--text-muted)', paddingRight: '2px' }}>🎵 نمط العمل</label>
+                        <label style={{ fontSize: '0.7rem', fontWeight: '700', color: 'var(--text-muted)', paddingRight: '2px' }}>🎵 التصفيات</label>
                         <div style={{ position: 'relative' }}>
                           <select
                             value={selectedStyle}
@@ -1006,7 +1051,7 @@ export default function Home() {
                     {/* Dropdown 2: Category */}
                     {categoryFilters.length > 0 && (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                        <label style={{ fontSize: '0.7rem', fontWeight: '700', color: 'var(--text-muted)', paddingRight: '2px' }}>🏷️ نوع العمل</label>
+                        <label style={{ fontSize: '0.7rem', fontWeight: '700', color: 'var(--text-muted)', paddingRight: '2px' }}>🏷️ التصنيفات</label>
                         <div style={{ position: 'relative' }}>
                           <select
                             value={selectedCategory}
@@ -1114,96 +1159,242 @@ export default function Home() {
             })()}
 
             {/* View: All Works Page */}
-            {activeTab === 'all_works' && (
-              <div className="all-works-container" style={{ padding: '16px', display: 'flex', flexDirection: 'column', height: '100%' }}>
-                <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '12px', marginBottom: '12px', scrollbarWidth: 'none' }}>
-                  <button onClick={() => setAllWorksFilter('all')} style={{ padding: '8px 16px', borderRadius: '20px', background: allWorksFilter === 'all' ? 'var(--accent-color)' : 'var(--bg-secondary)', color: allWorksFilter === 'all' ? '#000' : 'var(--text-primary)', border: 'none', whiteSpace: 'nowrap', fontWeight: 'bold', cursor: 'pointer' }}>
-                    كل الأعمال
-                  </button>
-                  <button onClick={() => setAllWorksFilter('saved')} style={{ padding: '8px 16px', borderRadius: '20px', background: allWorksFilter === 'saved' ? 'var(--accent-color)' : 'var(--bg-secondary)', color: allWorksFilter === 'saved' ? '#000' : 'var(--text-primary)', border: 'none', whiteSpace: 'nowrap', fontWeight: 'bold', cursor: 'pointer' }}>
-                    المفضلة
-                  </button>
-                  <button onClick={() => setAllWorksFilter('zaffat')} style={{ padding: '8px 16px', borderRadius: '20px', background: allWorksFilter === 'zaffat' ? 'var(--accent-color)' : 'var(--bg-secondary)', color: allWorksFilter === 'zaffat' ? '#000' : 'var(--text-primary)', border: 'none', whiteSpace: 'nowrap', fontWeight: 'bold', cursor: 'pointer' }}>
-                    زفات
-                  </button>
-                  <button onClick={() => setAllWorksFilter('sheelat')} style={{ padding: '8px 16px', borderRadius: '20px', background: allWorksFilter === 'sheelat' ? 'var(--accent-color)' : 'var(--bg-secondary)', color: allWorksFilter === 'sheelat' ? '#000' : 'var(--text-primary)', border: 'none', whiteSpace: 'nowrap', fontWeight: 'bold', cursor: 'pointer' }}>
-                    شيلات
-                  </button>
-                </div>
+            {activeTab === 'all_works' && (() => {
+              // Build cascading filter tree from filters API + track data
+              // Level 1: Main Category filters (filter_group === 'category')
+              const level1Options = [
+                { value: 'all', label: 'كل الأعمال' },
+                ...Array.from(
+                  new Set(
+                    filters
+                      .filter(f => f.filter_group === 'category' || (!f.filter_group || f.filter_group === 'category'))
+                      .map(f => f.label)
+                  )
+                ).map(v => ({ value: v, label: v }))
+              ];
 
-                {/* Search Bar */}
-                <div style={{ position: 'relative', marginBottom: '20px' }}>
-                  <input
-                    type="text"
-                    placeholder="ابحث عن عمل..."
-                    value={allWorksSearch}
-                    onChange={(e) => setAllWorksSearch(e.target.value)}
-                    style={{ width: '100%', padding: '12px 40px 12px 12px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'var(--text-primary)', fontFamily: 'var(--font-arabic)' }}
-                  />
-                  <Search size={18} style={{ position: 'absolute', right: '12px', top: '14px', color: 'var(--text-muted)' }} />
-                </div>
+              // Level 2: Sub Category filters linked to selected awLevel1 (filter_group === 'sub_category')
+              const level2Options = awLevel1 === 'all' ? [] : (() => {
+                const subSet = new Set();
 
-                {/* List of works */}
-                <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '12px', paddingBottom: '80px' }}>
-                  {(() => {
-                    let filtered = tracks;
+                // 1. From filters table with parent_label matching awLevel1 or filter_group === 'sub_category'
+                filters
+                  .filter(f => f.filter_group === 'sub_category' && (f.parent_label === awLevel1 || !f.parent_label))
+                  .forEach(f => subSet.add(f.label));
 
-                    if (allWorksFilter === 'saved') {
-                      filtered = filtered.filter(t => savedTrackIds.includes(t.id));
-                    } else if (allWorksFilter === 'zaffat') {
-                      filtered = filtered.filter(t => (t.filters || []).includes('زفات') || t.title.includes('زفة') || t.title.includes('زفات'));
-                    } else if (allWorksFilter === 'sheelat') {
-                      filtered = filtered.filter(t => (t.filters || []).includes('شيلات') || t.title.includes('شيلة') || t.title.includes('شيلات'));
-                    }
+                // 2. Also fallback to styles or track tags that match awLevel1
+                const matchingTracks = tracks.filter(t =>
+                  (t.filters || []).includes(awLevel1) || t.title.includes(awLevel1)
+                );
+                matchingTracks.forEach(t => {
+                  (t.filters || []).forEach(f => {
+                    if (f !== awLevel1) subSet.add(f);
+                  });
+                });
 
-                    if (allWorksSearch) {
-                      filtered = filtered.filter(t => t.title.includes(allWorksSearch) || (t.artists?.name || '').includes(allWorksSearch));
-                    }
+                return Array.from(subSet).map(v => ({ value: v, label: v }));
+              })();
 
-                    if (filtered.length === 0) {
-                      return (
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 20px', color: 'var(--text-muted)' }}>
-                          <Search size={40} strokeWidth={1} style={{ marginBottom: '12px', opacity: 0.5 }} />
-                          <p>لا توجد نتائج مطابقة</p>
-                        </div>
-                      );
-                    }
+              // Level 3: Sub Sub Category filters linked to selected awLevel2 (filter_group === 'sub_sub_category')
+              const level3Options = (awLevel1 === 'all' || awLevel2 === 'all') ? [] : (() => {
+                const subSubSet = new Set();
 
-                    return filtered.map((track, i) => (
-                      <div
-                        key={`allworks-${track.id}`}
-                        onClick={() => handleSelectTrack(track)}
-                        style={{ display: 'flex', gap: '12px', padding: '10px', background: 'var(--bg-secondary)', borderRadius: '12px', cursor: 'pointer', border: '1px solid var(--border-color)', alignItems: 'center' }}
+                // 1. From filters table with parent_label matching awLevel2 or filter_group === 'sub_sub_category'
+                filters
+                  .filter(f => f.filter_group === 'sub_sub_category' && (f.parent_label === awLevel2 || !f.parent_label))
+                  .forEach(f => subSubSet.add(f.label));
+
+                // 2. Also fallback to tracks matching level1 & level2
+                const matchingTracks = tracks.filter(t => {
+                  const tf = t.filters || [];
+                  return (
+                    (tf.includes(awLevel1) || t.title.includes(awLevel1)) &&
+                    (tf.includes(awLevel2) || t.title.includes(awLevel2))
+                  );
+                });
+                matchingTracks.forEach(t => {
+                  (t.filters || []).forEach(f => {
+                    if (f !== awLevel1 && f !== awLevel2) subSubSet.add(f);
+                  });
+                });
+
+                return Array.from(subSubSet).map(v => ({ value: v, label: v }));
+              })();
+
+              // Filter tracks based on selections
+              let filtered = tracks;
+              if (awLevel1 !== 'all') {
+                filtered = filtered.filter(t =>
+                  (t.filters || []).includes(awLevel1) || t.title.includes(awLevel1)
+                );
+              }
+              if (awLevel2 !== 'all') {
+                filtered = filtered.filter(t =>
+                  (t.filters || []).includes(awLevel2) || t.title.includes(awLevel2)
+                );
+              }
+              if (awLevel3 !== 'all') {
+                filtered = filtered.filter(t =>
+                  (t.filters || []).includes(awLevel3) || t.title.includes(awLevel3)
+                );
+              }
+              if (allWorksSearch) {
+                filtered = filtered.filter(t =>
+                  t.title.includes(allWorksSearch) ||
+                  (t.artists?.name || '').includes(allWorksSearch)
+                );
+              }
+
+              // Active dropdown style helper
+              const dropStyle = (active) => ({
+                width: '100%',
+                padding: '9px 12px 9px 28px',
+                borderRadius: '10px',
+                border: `1px solid ${active !== 'all' ? 'var(--accent-color)' : 'var(--border-color)'}`,
+                background: active !== 'all' ? 'rgba(204,164,59,0.1)' : 'var(--bg-primary)',
+                color: active !== 'all' ? 'var(--accent-color)' : 'var(--text-primary)',
+                fontFamily: 'var(--font-arabic)',
+                fontWeight: '600',
+                fontSize: '0.82rem',
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                cursor: 'pointer',
+                outline: 'none',
+                textAlign: 'right',
+                direction: 'rtl'
+              });
+
+              return (
+                <div className="all-works-container" style={{ padding: '16px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+
+                  {/* Search Bar */}
+                  <div style={{ position: 'relative', marginBottom: '12px' }}>
+                    <input
+                      type="text"
+                      placeholder="ابحث عن عمل..."
+                      value={allWorksSearch}
+                      onChange={(e) => setAllWorksSearch(e.target.value)}
+                      style={{ width: '100%', padding: '11px 40px 11px 12px', borderRadius: '12px', border: '1px solid var(--border-color)', background: 'var(--bg-secondary)', color: 'var(--text-primary)', fontFamily: 'var(--font-arabic)' }}
+                    />
+                    <Search size={17} style={{ position: 'absolute', right: '12px', top: '13px', color: 'var(--text-muted)' }} />
+                  </div>
+
+                  {/* Cascading Filter Dropdowns */}
+                  <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
+
+                    {/* Level 1: Main type */}
+                    <div style={{ position: 'relative', flex: '1 1 130px', minWidth: '110px' }}>
+                      <select
+                        value={awLevel1}
+                        onChange={e => { setAwLevel1(e.target.value); setAwLevel2('all'); setAwLevel3('all'); }}
+                        style={dropStyle(awLevel1)}
                       >
-                        <div className={`grad-${(i % 5) + 1}`} style={{ width: '50px', height: '50px', borderRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#fff', backgroundImage: `url(${track.cover_image_url || getTrackImage(i)})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                          {currentTrack && currentTrack.id === track.id && isPlaying ? (
-                            <div className="waveform-container" style={{ height: '10px', gap: '2px' }}>
-                              <div className="wave-bar" style={{ width: '2px', height: '100%', background: '#fff' }}></div>
-                              <div className="wave-bar" style={{ width: '2px', height: '100%', background: '#fff' }}></div>
-                              <div className="wave-bar" style={{ width: '2px', height: '100%', background: '#fff' }}></div>
-                            </div>
-                          ) : (
-                            <Play size={16} fill="#fff" />
-                          )}
-                        </div>
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-primary)' }}>{track.title}</div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{track.artists?.name || track.artist || 'استوديو زفات تباريك'}</div>
-                        </div>
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                          <button
-                            onClick={(e) => toggleSaveTrack(track.id, e)}
-                            style={{ border: 'none', background: 'transparent', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
-                          >
-                            <Heart size={20} fill={savedTrackIds.includes(track.id) ? 'var(--accent-color)' : 'none'} color={savedTrackIds.includes(track.id) ? 'var(--accent-color)' : 'var(--text-muted)'} />
-                          </button>
-                        </div>
+                        {level1Options.map(o => (
+                          <option key={o.value} value={o.value}>{o.label}</option>
+                        ))}
+                      </select>
+                      <span style={{ position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-muted)', fontSize: '2.2rem' }}>▾</span>
+                    </div>
+
+                    {/* Level 2: Sub-type (only if level1 chosen & options exist) */}
+                    {awLevel1 !== 'all' && level2Options.length > 0 && (
+                      <div style={{ position: 'relative', flex: '1 1 130px', minWidth: '110px' }}>
+                        <select
+                          value={awLevel2}
+                          onChange={e => { setAwLevel2(e.target.value); setAwLevel3('all'); }}
+                          style={dropStyle(awLevel2)}
+                        >
+                          <option value="all">كل {awLevel1}</option>
+                          {level2Options.map(o => (
+                            <option key={o.value} value={o.value}>{o.label}</option>
+                          ))}
+                        </select>
+                        <span style={{ position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-muted)', fontSize: '2.2rem' }}>▾</span>
                       </div>
-                    ));
-                  })()}
+                    )}
+
+                    {/* Level 3: Sub-sub-type (only if level2 chosen & options exist) */}
+                    {awLevel2 !== 'all' && level3Options.length > 0 && (
+                      <div style={{ position: 'relative', flex: '1 1 130px', minWidth: '110px' }}>
+                        <select
+                          value={awLevel3}
+                          onChange={e => setAwLevel3(e.target.value)}
+                          style={dropStyle(awLevel3)}
+                        >
+                          <option value="all">كل {awLevel2}</option>
+                          {level3Options.map(o => (
+                            <option key={o.value} value={o.value}>{o.label}</option>
+                          ))}
+                        </select>
+                        <span style={{ position: 'absolute', left: '8px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-muted)', fontSize: '2.2rem' }}>▾</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Results count + clear */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', fontSize: '0.72rem', color: 'var(--text-muted)', padding: '0 2px' }}>
+                    <span>{filtered.length} عمل</span>
+                    {(awLevel1 !== 'all' || awLevel2 !== 'all' || awLevel3 !== 'all' || allWorksSearch) && (
+                      <button
+                        onClick={() => { setAwLevel1('all'); setAwLevel2('all'); setAwLevel3('all'); setAllWorksSearch(''); }}
+                        style={{ background: 'none', border: 'none', color: '#ef4444', fontFamily: 'var(--font-arabic)', fontSize: '0.72rem', cursor: 'pointer', padding: 0, fontWeight: '700' }}
+                      >
+                        × مسح التصفية
+                      </button>
+                    )}
+                  </div>
+
+                  {/* List of works */}
+                  <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '12px', paddingBottom: '80px' }}>
+                    {filtered.length === 0 ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 20px', color: 'var(--text-muted)' }}>
+                        <Search size={40} strokeWidth={1} style={{ marginBottom: '12px', opacity: 0.5 }} />
+                        <p>لا توجد نتائج مطابقة</p>
+                      </div>
+                    ) : (
+                      filtered.map((track, i) => (
+                        <div
+                          key={`allworks-${track.id}`}
+                          onClick={() => handleSelectTrack(track)}
+                          style={{ display: 'flex', gap: '12px', padding: '10px', background: 'var(--bg-secondary)', borderRadius: '12px', cursor: 'pointer', border: `1px solid ${currentTrack && currentTrack.id === track.id ? 'var(--accent-color)' : 'var(--border-color)'}`, alignItems: 'center' }}
+                        >
+                          <div className={`grad-${(i % 5) + 1}`} style={{ width: '50px', height: '50px', borderRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#fff', backgroundImage: `url(${track.cover_image_url || getTrackImage(i)})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                            {currentTrack && currentTrack.id === track.id && isPlaying ? (
+                              <div className="waveform-container" style={{ height: '10px', gap: '2px' }}>
+                                <div className="wave-bar" style={{ width: '2px', height: '100%', background: '#fff' }}></div>
+                                <div className="wave-bar" style={{ width: '2px', height: '100%', background: '#fff' }}></div>
+                                <div className="wave-bar" style={{ width: '2px', height: '100%', background: '#fff' }}></div>
+                              </div>
+                            ) : (
+                              <Play size={16} fill="#fff" />
+                            )}
+                          </div>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-primary)' }}>{track.title}</div>
+                            <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                              {track.artists?.name || track.artist || 'استوديو زفات تباريك'}
+                              {(track.filters || []).length > 0 && (
+                                <span style={{ marginRight: '6px', color: 'var(--accent-color)', fontSize: '0.72rem' }}>
+                                  • {(track.filters || []).slice(0, 2).join(' | ')}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div style={{ display: 'flex', gap: '8px' }}>
+                            <button
+                              onClick={(e) => toggleSaveTrack(track.id, e)}
+                              style={{ border: 'none', background: 'transparent', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                            >
+                              <Heart size={20} fill={savedTrackIds.includes(track.id) ? 'var(--accent-color)' : 'none'} color={savedTrackIds.includes(track.id) ? 'var(--accent-color)' : 'var(--text-muted)'} />
+                            </button>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
 
             {/* View 2: Search Viewport */}
             {activeTab === 'search' && (
@@ -1221,7 +1412,7 @@ export default function Home() {
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: 'bold' }}>أعمال مقترحة تناسب بحثك</h3>
+                  <h3 style={{ fontSize: '1rem', fontWeight: 'bold', color: 'var(--text-secondary)' }}>أعمال مقترحة تناسب بحثك</h3>
                   {getFilteredTracks().map((track, i) => (
                     <div
                       key={`search-res-${track.id}`}
@@ -1255,8 +1446,8 @@ export default function Home() {
 
             {/* View 4: Saved / Favorites Viewport */}
             {activeTab === 'saved' && (
-              <div style={{ padding: '16px' }}>
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '16px' }}>المحفوظات 💖</h3>
+              <div style={{ padding: '16px', marginBottom: '66px' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '16px', color: 'var(--text-secondary)' }}>المحفوظات 💖</h3>
 
                 {savedTrackIds.length === 0 ? (
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '60px 20px', color: 'var(--text-secondary)' }}>
@@ -1295,41 +1486,285 @@ export default function Home() {
 
             {/* View 5: About Studio */}
             {activeTab === 'about' && (
-              <div style={{ padding: '16px', fontFamily: 'Cairo, sans-serif' }}>
-                <div style={{ backgroundImage: 'linear-gradient(135deg, #cca43b 0%, #1a1508 100%)', borderRadius: '12px', padding: '20px 16px', textAlign: 'center', border: '1px solid rgba(204, 164, 59, 0.3)', marginBottom: '16px' }}>
-                  <div style={{ fontSize: '2.5rem', marginBottom: '4px' }}>🎙️</div>
-                  <h3 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#fff', margin: '0 0 2px' }}>استوديو زفات تباريك للصوتيات</h3>
-                  <p style={{ fontSize: '0.8rem', color: '#eaeaea', margin: 0 }}>هندسة صوتية وتوزيع فني بأعلى دقة</p>
-                </div>
+              <div style={{ padding: '16px', fontFamily: 'Cairo, sans-serif', animation: 'fadeIn 0.3s ease' }}>
 
-                <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '12px', marginBottom: '12px' }}>
-                  <h4 style={{ color: 'var(--accent-color)', fontWeight: 'bold', fontSize: '0.9rem', margin: '0 0 6px' }}>✨ عن خدماتنا</h4>
-                  <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.6' }}>
-                    نقدم خدمات إنتاج الشيلات والزفات بالأسماء، وهندسة ومعالجة المسارات (مكس وماستر)، وتوزيع الألحان، وتجهيز البودكاست والتعليق الصوتي بأحدث الفلاتر العالمية.
-                  </p>
-                </div>
+                {/* 3D Wall Logo Display Card (Inspired by Studio Wall Sign) */}
+                <div style={{
+                  background: 'linear-gradient(135deg, #1c140a 0%, #2a1a0c 50%, #140c06 100%)',
+                  borderRadius: '16px',
+                  padding: '24px 18px',
+                  border: '1px solid rgba(204, 164, 59, 0.4)',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.1)',
+                  marginBottom: '20px',
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}>
+                  {/* Background ambient glow */}
+                  <div style={{
+                    position: 'absolute', top: '-40%', right: '-20%', width: '200px', height: '200px',
+                    background: 'radial-gradient(circle, rgba(204,164,59,0.18) 0%, transparent 70%)',
+                    pointerEvents: 'none'
+                  }} />
 
-                <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '12px', marginBottom: '12px' }}>
-                  <h4 style={{ color: 'var(--accent-color)', fontWeight: 'bold', fontSize: '0.9rem', margin: '0 0 6px' }}>🎧 أعمالنا</h4>
-                  <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', margin: '0 0 8px', lineHeight: '1.6' }}>
-                    قمنا بإنتاج مئات الشيلات والزفات. يمكنك سماع النماذج الحصرية في تبويب "الرئيسية" و "كل الأعمال".
-                  </p>
-                  <button onClick={() => setActiveTab('all_works')} style={{ background: 'rgba(204,164,59,0.1)', border: '1px solid var(--accent-color)', color: 'var(--accent-color)', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '0.75rem', width: '100%', fontFamily: 'inherit', fontWeight: 'bold' }}>
-                    تصفح الأعمال الصوتية ←
-                  </button>
-                </div>
+                  {/* Wall Logo Banner Layout */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justify: 'center',
+                    gap: '18px',
+                    direction: 'ltr',
+                    textAlign: 'left'
+                  }}>
+                    {/* Studio Logo Icon */}
+                    <div style={{
+                      flexShrink: 0,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justify: 'center',
+                      filter: 'drop-shadow(3px 6px 8px rgba(0,0,0,0.85))'
+                    }}>
+                      <img
+                        src="/logo.png"
+                        alt="ZAFAT TABARIK STUDIO"
+                        style={{
+                          width: '82px',
+                          height: '82px',
+                          objectFit: 'contain',
+                          transform: 'perspective(400px) rotateY(-6deg)'
+                        }}
+                      />
+                    </div>
 
-                <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '12px' }}>
-                  <h4 style={{ color: 'var(--accent-color)', fontWeight: 'bold', fontSize: '0.9rem', margin: '0 0 8px' }}>📞 تواصل معنا</h4>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <a href="https://wa.me/967776158797" target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none', background: '#25D366', color: '#fff', textAlign: 'center', padding: '8px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 'bold' }}>
-                      واتساب مباشر: 967776158797+
-                    </a>
-                    <button onClick={() => setIsBookingOpen(true)} style={{ background: 'rgba(204,164,59,0.15)', border: '1px solid var(--accent-color)', color: 'var(--accent-color)', padding: '8px', borderRadius: '8px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold', width: '100%', fontFamily: 'inherit' }}>
-                      طلب حجز جلسة تسجيل
-                    </button>
+                    {/* Studio 3D Wall Text */}
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <div style={{
+                        fontFamily: 'Montserrat, sans-serif',
+                        fontWeight: '900',
+                        fontSize: '1.35rem',
+                        letterSpacing: '1px',
+                        color: '#cca43b',
+                        background: 'linear-gradient(180deg, #f5d77f 0%, #cca43b 60%, #8a681c 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        filter: 'drop-shadow(2px 3px 3px rgba(0,0,0,0.95))',
+                        lineHeight: 1.15
+                      }}>
+                        ZAFAT TABARIK
+                      </div>
+
+                      <div style={{
+                        fontFamily: 'Montserrat, sans-serif',
+                        fontWeight: '800',
+                        fontSize: '1.1rem',
+                        letterSpacing: '5px',
+                        color: '#b88e2c',
+                        background: 'linear-gradient(180deg, #e6c265 0%, #b88e2c 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        filter: 'drop-shadow(2px 3px 2px rgba(0,0,0,0.95))',
+                        marginTop: '2px'
+                      }}>
+                        STUDIO
+                      </div>
+
+                      <div style={{
+                        direction: 'rtl',
+                        fontSize: '0.74rem',
+                        color: '#d4af37',
+                        opacity: 0.9,
+                        marginTop: '6px',
+                        fontFamily: 'Cairo, sans-serif',
+                        fontWeight: '700'
+                      }}>
+                        استوديو زفات تباريك للصوتيات
+                      </div>
+                    </div>
                   </div>
                 </div>
+
+                {/* Section 1: Services */}
+                <div style={{
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: '14px',
+                  padding: '16px',
+                  marginBottom: '14px',
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+                }}>
+                  <h4 style={{ color: 'var(--accent-color)', fontWeight: '800', fontSize: '0.98rem', margin: '0 0 10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    ✨ خدماتنا الاحترافية
+                  </h4>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', margin: '0 0 12px', lineHeight: '1.7' }}>
+                    نقدم لكم باقة متكاملة من الخدمات الصوتية بجودة الإنتاج الاستوديوي العالي وأحدث أجهزة الهندسة والتوزيع:
+                  </p>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                    <div style={{ padding: '10px', background: 'var(--bg-tertiary)', borderRadius: '10px', border: '1px solid var(--border-color)' }}>
+                      <div style={{ fontSize: '1.2rem', marginBottom: '4px' }}>👰</div>
+                      <div style={{ fontWeight: '700', fontSize: '0.82rem', color: 'var(--text-primary)' }}>زفات بالأسماء</div>
+                      <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '2px' }}>تنفيذ حصري لجميع أفراحكم</div>
+                    </div>
+                    <div style={{ padding: '10px', background: 'var(--bg-tertiary)', borderRadius: '10px', border: '1px solid var(--border-color)' }}>
+                      <div style={{ fontSize: '1.2rem', marginBottom: '4px' }}>🎵</div>
+                      <div style={{ fontWeight: '700', fontSize: '0.82rem', color: 'var(--text-primary)' }}>شيلات خاصة</div>
+                      <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '2px' }}>تخرج، مواليد، وتهانئ</div>
+                    </div>
+                    <div style={{ padding: '10px', background: 'var(--bg-tertiary)', borderRadius: '10px', border: '1px solid var(--border-color)' }}>
+                      <div style={{ fontSize: '1.2rem', marginBottom: '4px' }}>🎛️</div>
+                      <div style={{ fontWeight: '700', fontSize: '0.82rem', color: 'var(--text-primary)' }}>مكس وماستر</div>
+                      <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '2px' }}>هندسة صوتية ومعالجة نقية</div>
+                    </div>
+                    <div style={{ padding: '10px', background: 'var(--bg-tertiary)', borderRadius: '10px', border: '1px solid var(--border-color)' }}>
+                      <div style={{ fontSize: '1.2rem', marginBottom: '4px' }}>🎙️</div>
+                      <div style={{ fontWeight: '700', fontSize: '0.82rem', color: 'var(--text-primary)' }}>تسجيل وبودكاست</div>
+                      <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '2px' }}>تسجيل صوتي بأفضل المايكات</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Grid for Explore Works & Contact (Side-by-side on desktop/laptop, stacked on mobile) */}
+                <div className="about-grid">
+                  {/* Section 2: Explore Works Button */}
+                  <div style={{
+                    background: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '14px',
+                    padding: '16px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justify: 'space-between'
+                  }}>
+                    <div>
+                      <h4 style={{ color: 'var(--accent-color)', fontWeight: '800', fontSize: '0.98rem', margin: '0 0 8px' }}>🎧 تصفح أعمال الاستوديو</h4>
+                      <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: '0 0 12px', lineHeight: '1.6' }}>
+                        استمع لآلاف الأعمال والنماذج الحصرية بشتى أنواع الفلاتر والتصنيفات الفرعية.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setActiveTab('all_works')}
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(204,164,59,0.2) 0%, rgba(204,164,59,0.1) 100%)',
+                        border: '1px solid var(--accent-color)',
+                        color: 'var(--accent-color)',
+                        padding: '10px 16px',
+                        borderRadius: '10px',
+                        cursor: 'pointer',
+                        fontSize: '0.85rem',
+                        width: '100%',
+                        fontFamily: 'inherit',
+                        fontWeight: '800',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justify: 'center',
+                        gap: '8px'
+                      }}
+                    >
+                      <span>تصفح مكتبة الأعمال الصوتية</span> ←
+                    </button>
+                  </div>
+
+                  {/* Section 3: Contact */}
+                  <div style={{
+                    background: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '14px',
+                    padding: '16px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justify: 'space-between'
+                  }}>
+                    <h4 style={{ color: 'var(--accent-color)', fontWeight: '800', fontSize: '0.98rem', margin: '0 0 12px' }}>📞 حجز وتواصل مباشر</h4>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                      <a
+                        href="https://wa.me/967779011548"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          alignItems: 'center',
+                          justify: 'center',
+                          gap: '8px',
+                          textDecoration: 'none',
+                          textAlign: 'center',
+                          background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+                          color: '#fff',
+                          padding: '11px',
+                          borderRadius: '10px',
+                          fontSize: '0.88rem',
+                          fontWeight: '800',
+                          boxShadow: '0 4px 15px rgba(37,211,102,0.3)'
+                        }}
+                      >
+                        💬 تواصل عبر واتساب: 967779011548+
+                      </a>
+                      <button
+                        onClick={() => setIsBookingOpen(true)}
+                        style={{
+                          background: 'linear-gradient(135deg, var(--accent-color), #8a681c)',
+                          border: 'none',
+                          color: '#000',
+                          padding: '11px',
+                          borderRadius: '10px',
+                          cursor: 'pointer',
+                          fontSize: '0.88rem',
+                          fontWeight: '800',
+                          width: '100%',
+                          fontFamily: 'inherit',
+                          boxShadow: '0 4px 15px rgba(204,164,59,0.3)'
+                        }}
+                      >
+                        📝 طلب حجز جلسة تسجيل أو شيلة
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer in About Page */}
+                <footer style={{ padding: '24px 16px 80px', borderTop: '1px solid var(--border-color)', textAlign: 'center' }}>
+                  <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.8', marginBottom: '8px' }}>
+                    <strong>استوديو زفات تباريك للصوتيات</strong> — متخصصون في إنتاج{' '}
+                    <a href="#works" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); setAwLevel1('شيلات'); setAwLevel2('all'); setAwLevel3('all'); }} style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>الشيلات بالأسماء</a>،{' '}
+                    <a href="#works" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); setAwLevel1('زفات'); setAwLevel2('all'); setAwLevel3('all'); }} style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>زفات الأفراح</a>،{' '}
+                    الأناشيد, المكس والماستر الاحترافي، وتسجيل البودكاست.
+                  </p>
+                  <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', flexWrap: 'wrap' }}>
+                    <a
+                      href="https://getsoft.vercel.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: 'var(--accent-color)',
+                        fontWeight: '900',
+                        textDecoration: 'none',
+                        padding: '3px 10px',
+                        borderRadius: '6px',
+                        background: 'rgba(204,164,59,0.1)',
+                        border: '1.5px solid rgba(249, 181, 9, 1)',
+                        transition: 'all 0.2s ease',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px'
+                      }}
+                    >
+                      <span>  تـصـمـيـم وتـطـويــر   :  </span>
+                      <img
+                        src="/get-soft.png"
+                        alt="GET SOFT Logo"
+                        style={{
+                          width: '18px',
+                          height: '18px',
+                          borderRadius: '4px',
+                          objectFit: 'cover',
+                          marginRight: '8px'
+                        }}
+                      />
+                      <span>شـركـة GET SOFT للبرمجيات</span>
+                    </a>
+                  </p>
+                  <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '8px' }}>
+                    © {new Date().getFullYear()} استوديو زفات تباريك للصوتيات. جميع الحقوق محفوظة.
+                  </p>
+                </footer>
+
               </div>
             )}
 
@@ -1372,7 +1807,7 @@ export default function Home() {
                     onClick={(e) => {
                       e.stopPropagation();
                       const msg = `مرحباً، أعجبتني (${currentTrack.title}) وأرغب في طلب عمل مشابه.`;
-                      window.open(`https://wa.me/967776158797?text=${encodeURIComponent(msg)}`, '_blank');
+                      window.open(`https://wa.me/967779011548?text=${encodeURIComponent(msg)}`, '_blank');
                     }}
                     style={{ background: 'rgba(37, 211, 102, 0.15)', border: '1px solid #25D366', color: '#25D366', borderRadius: '10px', cursor: 'pointer', padding: '4px 5px', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.8rem', fontWeight: 'bold' }}
                     title="اطلب مثل هذا العمل عبر واتساب"
@@ -1561,7 +1996,7 @@ export default function Home() {
           {/* Artist Detail */}
           {activeTab === 'artist_detail' && selectedArtist && (
             <div className="artist-detail-page">
-              <div className="artist-detail-header" style={{ backgroundImage: `url(${selectedArtist.image_url || getArtistImage(selectedArtist.name)})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+              <div className="artist-detail-header" style={{ backgroundImage: `url(${selectedArtist.image_url || getArtistImage(selectedArtist.name)})`, backgroundSize: 'contain', backgroundPosition: 'center' }}>
                 <button className="back-btn" onClick={() => { setActiveTab('home'); setSelectedArtist(null); }}>
                   العودة ←
                 </button>
@@ -1592,7 +2027,7 @@ export default function Home() {
                     <div style={{ display: 'flex', gap: '10px' }}>
                       {/* Dropdown 1: Style */}
                       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                        <span style={{ fontSize: '0.72rem', fontWeight: '700', color: 'var(--text-secondary)' }}>🎵 نمط العمل</span>
+                        <span style={{ fontSize: '0.72rem', fontWeight: '700', color: 'var(--text-secondary)' }}>🎵 التصفيات</span>
                         <div style={{ position: 'relative' }}>
                           <select
                             value={selectedStyle}
@@ -1609,18 +2044,18 @@ export default function Home() {
                               direction: 'rtl'
                             }}
                           >
-                            <option value="all">كل الأنماط</option>
+                            <option value="all">الكل</option>
                             {styleFilters.map(fl => (
                               <option key={fl.id} value={fl.label}>{fl.label}</option>
                             ))}
                           </select>
-                          <span style={{ position: 'absolute', left: '10px', top: '53%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-muted)', fontSize: '0.75rem' }}>▾</span>
+                          <span style={{ position: 'absolute', left: '10px', top: '53%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-muted)', fontSize: '2.2rem' }}>▾</span>
                         </div>
                       </div>
 
                       {/* Dropdown 2: Category */}
                       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                        <span style={{ fontSize: '0.72rem', fontWeight: '700', color: 'var(--text-secondary)' }}>🏷️ نوع العمل</span>
+                        <span style={{ fontSize: '0.72rem', fontWeight: '700', color: 'var(--text-secondary)' }}>🏷️ التصنيفات</span>
                         <div style={{ position: 'relative' }}>
                           <select
                             value={selectedCategory}
@@ -1637,12 +2072,12 @@ export default function Home() {
                               direction: 'rtl'
                             }}
                           >
-                            <option value="all">كل الأنواع</option>
+                            <option value="all">الكل</option>
                             {categoryFilters.map(fl => (
                               <option key={fl.id} value={fl.label}>{fl.label}</option>
                             ))}
                           </select>
-                          <span style={{ position: 'absolute', left: '10px', top: '53%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-muted)', fontSize: '0.75rem' }}>▾</span>
+                          <span style={{ position: 'absolute', left: '10px', top: '53%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-muted)', fontSize: '2.2rem' }}>▾</span>
                         </div>
                       </div>
                     </div>
