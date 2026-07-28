@@ -1996,7 +1996,7 @@ export default function Home() {
           {/* Artist Detail */}
           {activeTab === 'artist_detail' && selectedArtist && (
             <div className="artist-detail-page">
-              <div className="artist-detail-header" style={{ backgroundImage: `url(${selectedArtist.image_url || getArtistImage(selectedArtist.name)})`, backgroundSize: 'contain', backgroundPosition: 'center' }}>
+              <div className="artist-detail-header" style={{ backgroundImage: `url(${selectedArtist.image_url || getArtistImage(selectedArtist.name)})` }}>
                 <button className="back-btn" onClick={() => { setActiveTab('home'); setSelectedArtist(null); }}>
                   العودة ←
                 </button>
