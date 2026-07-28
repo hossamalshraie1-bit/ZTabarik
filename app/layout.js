@@ -34,12 +34,30 @@ export const metadata = {
   verification: { google: 'google4603cba6b6bb4bbc' },
 };
 
-// schema.org WebSite — المصدر الأساسي لاسم الموقع في جوجل
+// schema.org WebSite — لاسم الموقع في جوجل
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type':    'WebSite',
   name:       SITE_NAME,
   url:        SITE_URL,
+};
+
+// schema.org LocalBusiness — للنتائج الغنية في جوجل
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type':    'LocalBusiness',
+  name:       SITE_NAME,
+  image:      `${SITE_URL}${ICON}`,
+  '@id':       SITE_URL,
+  url:         SITE_URL,
+  telephone:  '+967779011548',
+  openingHoursSpecification: {
+    '@type':     'OpeningHoursSpecification',
+    dayOfWeek:   ['Saturday','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday'],
+    opens:       '08:00',
+    closes:      '23:00',
+  },
+  sameAs: ['https://wa.me/967779011548'],
 };
 
 export default function RootLayout({ children }) {
@@ -52,8 +70,13 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
+        />
       </head>
       <body>{children}</body>
     </html>
   );
 }
+
