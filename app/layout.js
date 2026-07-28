@@ -1,7 +1,9 @@
 import './globals.css';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://z-tabarik.app';
+
 export const metadata = {
-  metadataBase: new URL('https://z-tabarik.vercel.app'),
+  metadataBase: new URL(siteUrl),
 
   title: {
     default: 'استوديو زفات تباريك للصوتيات | أرقى الشيلات والزفات بالأسماء',
@@ -26,7 +28,7 @@ export const metadata = {
     'السعودية',
   ],
 
-  authors: [{ name: 'استوديو زفات تباريك للصوتيات', url: 'https://z-tabarik.vercel.app' }],
+  authors: [{ name: 'استوديو زفات تباريك للصوتيات' }],
   creator: 'استوديو زفات تباريك للصوتيات',
   publisher: 'استوديو زفات تباريك للصوتيات',
 
@@ -41,7 +43,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'ar_SA',
-    url: 'https://z-tabarik.vercel.app',
+    url: siteUrl,
     siteName: 'استوديو زفات تباريك للصوتيات',
     title: 'استوديو زفات تباريك للصوتيات | أرقى الشيلات والزفات بالأسماء',
     description:
@@ -105,9 +107,9 @@ const localBusinessSchema = {
   '@type': 'LocalBusiness',
   name: 'استوديو زفات تباريك للصوتيات',
   alternateName: 'زفات تباريك',
-  image: 'https://z-tabarik.vercel.app/apple-touch-icon.png',
-  '@id': 'https://z-tabarik.vercel.app',
-  url: 'https://z-tabarik.vercel.app',
+  image: `${siteUrl}/apple-touch-icon.png`,
+  '@id': siteUrl,
+  url: siteUrl,
   telephone: '+967779011548',
   priceRange: '$$$',
   geo: {
@@ -129,7 +131,7 @@ const websiteSchema = {
   '@type': 'WebSite',
   name: 'استوديو زفات تباريك للصوتيات',
   alternateName: ['زفات تباريك', 'استوديو زفات تباريك'],
-  url: 'https://z-tabarik.vercel.app',
+  url: siteUrl,
   description: 'الموقع الرسمي لاستوديو زفات تباريك في الرياض، السعودية',
   inLanguage: 'ar',
 };

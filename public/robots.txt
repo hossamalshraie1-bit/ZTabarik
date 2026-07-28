@@ -3,4 +3,4 @@ Allow: /
 Disallow: /private/
 Disallow: /admin/
 
-Sitemap: https://z-tabarik.vercel.app/sitemap.xml
+Sitemap: /sitemap.xml

@@ -141,7 +141,7 @@ export default function Home() {
         "@context": "https://schema.org",
         "@type": "ItemList",
         "name": "أعمال استوديو زفات تباريك الصوتية",
-        "description": "مجموعة الأعمال الصوتية الحصرية من استوديو زفات تباريك - شيلات، زفات، أناشيد",
+        "description": "مجموعة الأعمال الصوتية الحصرية من استوديو زفات تباريك - شيلات، زفات",
         "url": typeof window !== 'undefined' ? window.location.href : '',
         "numberOfItems": tracks.length,
         "itemListElement": tracks.map((track, index) => {
@@ -184,7 +184,7 @@ export default function Home() {
       script.textContent = JSON.stringify(itemListSchema);
       document.head.appendChild(script);
 
-      document.title = `استوديو زفات تباريك للصوتيات | ${tracks.length} عمل صوتي - شيلات، زفات، أناشيد`;
+      document.title = `استوديو زفات تباريك للصوتيات | ${tracks.length} عمل صوتي - شيلات، زفات`;
     } catch (err) {
       console.error("Error inserting dynamic JSON-LD schema:", err);
     }
@@ -874,7 +874,7 @@ export default function Home() {
                     <strong>استوديو زفات تباريك للصوتيات</strong> — متخصصون في إنتاج{' '}
                     <a href="#works" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); setAwLevel1('شيلات'); setAwLevel2('all'); setAwLevel3('all'); }} style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>الشيلات بالأسماء</a>،{' '}
                     <a href="#works" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); setAwLevel1('زفات'); setAwLevel2('all'); setAwLevel3('all'); }} style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>زفات الأفراح</a>،{' '}
-                    الأناشيد, المكس والماستر الاحترافي، وتسجيل البودكاست.
+                    المكس والماستر الاحترافي، وتسجيل البودكاست.
                   </p>
                   {/* <address style={{ fontStyle: 'normal', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                     تواصل معنا:{' '}
@@ -883,7 +883,7 @@ export default function Home() {
                   <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', flexWrap: 'wrap' }}>
                     {/* <span>تصميم وتطوير:</span> */}
                     <a
-                      href="https://getsoft.vercel.app"
+                      href="https://getsoft.app"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -1724,11 +1724,11 @@ export default function Home() {
                     <strong>استوديو زفات تباريك للصوتيات</strong> — متخصصون في إنتاج{' '}
                     <a href="#works" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); setAwLevel1('شيلات'); setAwLevel2('all'); setAwLevel3('all'); }} style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>الشيلات بالأسماء</a>،{' '}
                     <a href="#works" onClick={(e) => { e.preventDefault(); setActiveTab('all_works'); setAwLevel1('زفات'); setAwLevel2('all'); setAwLevel3('all'); }} style={{ color: 'var(--accent-color)', textDecoration: 'none' }}>زفات الأفراح</a>،{' '}
-                    الأناشيد, المكس والماستر الاحترافي، وتسجيل البودكاست.
+                    المكس والماستر الاحترافي، وتسجيل البودكاست.
                   </p>
                   <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', flexWrap: 'wrap' }}>
                     <a
-                      href="https://getsoft.vercel.app"
+                      href="https://getsoft.app"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
