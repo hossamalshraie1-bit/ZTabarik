@@ -158,6 +158,7 @@ export default function Home() {
               "duration": track?.duration || "PT3M",
               "url": typeof window !== 'undefined' ? `${window.location.origin}/#track-${encodeURIComponent(trackTitle)}` : '',
               "image": track?.cover_image_url || "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80",
+              "logo": "https://z-tabarik.vercel.app/logo.png",
               "genre": Array.isArray(track?.filters) ? track.filters.join(', ') : 'شيلات',
               "inAlbum": {
                 "@type": "MusicAlbum",
