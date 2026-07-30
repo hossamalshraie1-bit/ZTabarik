@@ -138,6 +138,7 @@ const localBusiness = {
   '@type': 'LocalBusiness',
   name: SITE_NAME,
   image: `${SITE_URL}${ICON}`,
+  logo: "https://z-tabarik.vercel.app/logo.png",
   '@id': SITE_URL,
   url: SITE_URL,
   telephone: '+967779011548',
