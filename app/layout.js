@@ -102,6 +102,7 @@ export const metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
     images: [{ url: ICON }],
+    logo: "https://z-tabarik.vercel.app/logo.png"
   },
 
   // تم التعديل هنا: تحديد المقاسات ونوع الملف إجبارياً ليقرأه زاحف جوجل
