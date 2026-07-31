@@ -173,7 +173,7 @@ export default function Home() {
                 "name": track?.artists?.name || track?.artist || "استوديو زفات تباريك"
               },
               "isAccessibleForFree": true,
-              "keywords": `${trackTitle}, شيلات, زفات, استوديو زفات تباريك, ${Array.isArray(track?.filters) ? track.filters.join(', ') : ''}`
+              "keywords": `${trackTitle}, شيلات, زفات, استوديو زفات تباريك,افراح,تخرج,زفات افراح,افراح,السعودية,شيلات سعودية,مناسبات ${Array.isArray(track?.filters) ? track.filters.join(', ') : ''}`
             }
           };
         })
@@ -884,7 +884,7 @@ export default function Home() {
                   <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', flexWrap: 'wrap' }}>
                     {/* <span>تصميم وتطوير:</span> */}
                     <a
-                      href="https://getsoft.app"
+                      href="https://getsoft.vercel.app"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -1729,7 +1729,7 @@ export default function Home() {
                   </p>
                   <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', flexWrap: 'wrap' }}>
                     <a
-                      href="https://getsoft.app"
+                      href="https://getsoft.vercel.app"
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{

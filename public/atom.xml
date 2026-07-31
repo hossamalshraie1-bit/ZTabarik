@@ -1,0 +1,19 @@
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>استوديو زفات تباريك للصوتيات</title>
+<subtitle>متخصصون في إنتاج الشيلات بالأسماء، زفات الأفراح، الأناشيد، المكس والماستر الاحترافي، وتسجيل البودكاست.</subtitle>
+<link href="https://z-tabarik.vercel.app/atom.xml" rel="self" type="application/atom+xml"/>
+<link href="https://z-tabarik.vercel.app/" rel="alternate" type="text/html"/>
+<updated>2026-07-30T03:00:00Z</updated>
+<id>https://z-tabarik.vercel.app/</id>
+<author>
+<name>استوديو زفات تباريك</name>
+<uri>https://z-tabarik.vercel.app/</uri>
+</author>
+<entry>
+<title>معرض أعمال استوديو زفات تباريك للصوتيات</title>
+<link href="https://z-tabarik.vercel.app/"/>
+<id>https://z-tabarik.vercel.app/#home</id>
+<updated>2026-07-30T03:00:00Z</updated>
+<summary>تصفح أحدث الأعمال الصوتية، الزفات الاحترافية، والشيلات الخاصة لدى استوديو تباريك.</summary>
+</entry>
+</feed>
