@@ -540,7 +540,7 @@ export default function Home() {
                   <img src="/apple-touch-icon.png" alt="استوديو زفات تباريك للصوتيات" style={{ width: '38px', height: '38px', objectFit: 'contain' }} />
                 </span>
                 <span className="studio-name-desktop">استوديو زفات تباريك للصوتيات</span>
-                <span className="studio-name-mobile">ZAFAT TABARIK</span>
+                <span className="studio-name-mobile">استوديو زفات تباريك</span>
               </h1>
 
               <div className="header-left">
@@ -1491,7 +1491,7 @@ export default function Home() {
 
                 {/* 3D Wall Logo Display Card (Inspired by Studio Wall Sign) */}
                 <div style={{
-                  background: 'linear-gradient(135deg, #1c140a 0%, #2a1a0c 50%, #140c06 100%)',
+                  background: 'linear-gradient(135deg, #756a5dff 0%, #2a1a0c 50%, #140c06 100%)',
                   borderRadius: '16px',
                   padding: '24px 18px',
                   border: '1px solid rgba(204, 164, 59, 0.4)',
@@ -1503,7 +1503,7 @@ export default function Home() {
                   {/* Background ambient glow */}
                   <div style={{
                     position: 'absolute', top: '-40%', right: '-20%', width: '200px', height: '200px',
-                    background: 'radial-gradient(circle, rgba(204,164,59,0.18) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(104, 76, 6, 0.18) 0%, transparent 70%)',
                     pointerEvents: 'none'
                   }} />
 
@@ -1528,8 +1528,8 @@ export default function Home() {
                         src="/logo.png"
                         alt="ZAFAT TABARIK STUDIO"
                         style={{
-                          width: '82px',
-                          height: '82px',
+                          width: '92px',
+                          height: '92px',
                           objectFit: 'contain',
                           transform: 'perspective(400px) rotateY(-6deg)'
                         }}
