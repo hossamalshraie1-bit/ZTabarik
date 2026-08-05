@@ -79,12 +79,14 @@ const localBusiness = {
   image: 'https://z-tabarik.vercel.app/logo.png',
   logo: "https://z-tabarik.vercel.app/logo.png",
   '@id': SITE_URL,
-  foundingDate: '2026',
+  foundingDate: '2024',
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'السعودية',
+    streetAddress: 'المملكة العربية السعودية',
+    addressLocality: 'الرياض',
     addressRegion: 'الرياض',
-    addressCountry: 'السعودية',
+    postalCode: '11564',
+    addressCountry: 'SA',
   },
   contactPoint: {
     '@type': 'ContactPoint',
