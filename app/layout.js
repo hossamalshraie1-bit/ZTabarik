@@ -20,7 +20,7 @@ export const metadata = {
 
   authors: [{ name: 'زفات تباريك', url: 'https://z-tabarik.vercel.app' }],
   creator: 'زفات تباريك',
-  publisher: 'استوديو زفات تباريك',
+  publisher: 'زفات تباريك',
 
   alternates: {
     canonical: 'https://z-tabarik.vercel.app',
@@ -80,12 +80,12 @@ const websiteSchema = {
 const localBusiness = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: 'استوديو زفات تباريك',
+  name: 'زفات تباريك',
   alternateName: 'زفات تباريك',
   url: SITE_URL,
   description: 'متخصصون في إنتاج الشيلات والزفات بالأسماء، المكس والماستر الاحترافي، وتسجيل البودكاست.',
-  image: 'https://z-tabarik.vercel.app/logo.png',
-  logo: "https://z-tabarik.vercel.app/logo.png",
+  image: '/logo.png',
+  logo: "/logo.png",
   '@id': SITE_URL,
   foundingDate: '2024',
   address: {

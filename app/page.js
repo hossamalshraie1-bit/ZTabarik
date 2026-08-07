@@ -165,7 +165,7 @@ export default function Home() {
                 "name": "أعمال استوديو زفات تباريك",
                 "byArtist": {
                   "@type": "MusicGroup",
-                  "name": "استوديو زفات تباريك للصوتيات"
+                  "name": "زفات تباريك"
                 }
               },
               "byArtist": {
@@ -173,7 +173,7 @@ export default function Home() {
                 "name": track?.artists?.name || track?.artist || "زفات تباريك"
               },
               "isAccessibleForFree": true,
-              "keywords": `${trackTitle}, شيلات, زفات, استوديو زفات تباريك,افراح,تخرج,زفات افراح,افراح,السعودية,شيلات سعودية,مناسبات ${Array.isArray(track?.filters) ? track.filters.join(', ') : ''}`
+              "keywords": `${trackTitle}, شيلات, زفات, استوديو زفات تباريك,'استوديو زفات تباريك','زفات بالاسماء',افراح,تخرج,زفات افراح,افراح,السعودية,شيلات سعودية,مناسبات ${Array.isArray(track?.filters) ? track.filters.join(', ') : ''}`
             }
           };
         })
@@ -748,7 +748,7 @@ export default function Home() {
 
                           <figcaption className="card-text-overlay">
                             <h3 className="card-title">{track.title}</h3>
-                            <p className="card-artist">{track.artists?.name || track.artist || 'استوديو زفات تباريك'}</p>
+                            <p className="card-artist">{track.artists?.name || track.artist || 'زفات تباريك'}</p>
                           </figcaption>
                         </figure>
                       </article>
@@ -798,7 +798,7 @@ export default function Home() {
 
                           <div className="card-text-overlay">
                             <div className="card-title" style={{ fontSize: '0.92rem' }}>{track.title}</div>
-                            <div className="card-artist">{track.artists?.name || track.artist || 'استوديو زفات تباريك'}</div>
+                            <div className="card-artist">{track.artists?.name || track.artist || 'زفات تباريك'}</div>
                           </div>
                         </div>
                       </div>
@@ -1373,7 +1373,7 @@ export default function Home() {
                           <div style={{ flex: 1 }}>
                             <div style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--text-primary)' }}>{track.title}</div>
                             <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                              {track.artists?.name || track.artist || 'استوديو زفات تباريك'}
+                              {track.artists?.name || track.artist || 'زفات تباريك'}
                               {(track.filters || []).length > 0 && (
                                 <span style={{ marginRight: '6px', color: 'var(--accent-color)', fontSize: '0.72rem' }}>
                                   • {(track.filters || []).slice(0, 2).join(' | ')}
@@ -1426,7 +1426,7 @@ export default function Home() {
 
                       <div style={{ flex: 1 }}>
                         <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-primary)' }}>{track.title}</div>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{track.artists?.name || track.artist || 'استوديو زفات تباريك'}</div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{track.artists?.name || track.artist || 'زفات تباريك'}</div>
                       </div>
 
                       <div style={{ display: 'flex', gap: '8px' }}>
@@ -1469,7 +1469,7 @@ export default function Home() {
 
                         <div style={{ flex: 1 }}>
                           <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--text-primary)' }}>{track.title}</div>
-                          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{track.artists?.name || track.artist || 'استوديو زفات تباريك'}</div>
+                          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{track.artists?.name || track.artist || 'زفات تباريك'}</div>
                         </div>
 
                         <button
@@ -1789,7 +1789,7 @@ export default function Home() {
 
                 <div className="player-info" onClick={handlePlayPause} style={{ cursor: 'pointer' }}>
                   <span className="player-title">{currentTrack.title}</span>
-                  <span className="player-artist">{currentTrack.artists?.name || currentTrack.artist || 'استوديو زفات تباريك'}</span>
+                  <span className="player-artist">{currentTrack.artists?.name || currentTrack.artist || 'زفات تباريك'}</span>
                 </div>
 
                 <div
@@ -2121,7 +2121,7 @@ export default function Home() {
                         </div>
                         <div style={{ flex: 1, padding: '0 12px' }}>
                           <div className="track-title">{track.title}</div>
-                          <div className="track-desc">{track.artists?.name || track.artist || 'استوديو زفات تباريك'} • {Array.isArray(track.filters) ? track.filters.join(', ') : 'صوتيات'}</div>
+                          <div className="track-desc">{track.artists?.name || track.artist || 'زفات تباريك'} • {Array.isArray(track.filters) ? track.filters.join(', ') : 'صوتيات'}</div>
                         </div>
                         <div className="track-duration">{track.duration || '03:40'}</div>
                       </div>
