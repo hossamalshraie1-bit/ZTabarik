@@ -1,12 +1,12 @@
 
 import './globals.css';
 
-const SITE_NAME = 'استوديو زفات تباريك';
+const SITE_NAME = 'زفات تباريك';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://z-tabarik.vercel.app';
 const ICON = '/logo.png';
 
 export const metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL('https://z-tabarik.vercel.app'),
 
   title: {
     default: `استوديو زفات تباريك للصوتيات | أرقى الشيلات والزفات بالأسماء`,
@@ -16,13 +16,22 @@ export const metadata = {
   description:
     'متخصصون في إنتاج الشيلات والزفات بالأسماء، المكس والماستر الاحترافي، وتسجيل البودكاست.',
 
-  keywords: ['زفات', 'شيلات', 'زفات بالأسماء', 'مكس وماستر', 'بودكاست', 'زفات تباريك', 'اعراس', 'تخرج', 'زفات افراح', 'افراح', 'السعودية', 'شيلات سعودية', 'مناسبات'],
+  keywords: ['زفات', 'شيلات', 'زفات بالأسماء', 'مكس وماستر', 'بودكاست', 'زفات تباريك', 'اعراس', 'تخرج', 'زفات افراح', 'افراح', 'السعودية', 'شيلات سعودية', 'مناسبات', 'استوديو صوتيات', 'استوديوهات', 'استوديو'],
+
+  authors: [{ name: 'زفات تباريك', url: 'https://z-tabarik.vercel.app' }],
+  creator: 'زفات تباريك',
+  publisher: 'استوديو زفات تباريك',
+
+  alternates: {
+    canonical: 'https://z-tabarik.vercel.app',
+    languages: { 'ar-SA': 'https://z-tabarik.vercel.app' },
+  },
 
   openGraph: {
     type: 'website',
     locale: 'ar_SA',
-    url: SITE_URL,
-    siteName: 'استوديو زفات تباريك',
+    url: 'https://z-tabarik.vercel.app',
+    siteName: 'زفات تباريك',
     title: 'استوديو زفات تباريك للصوتيات | أرقى الشيلات والزفات بالأسماء',
     description: 'متخصصون في إنتاج الشيلات والزفات بالأسماء، المكس والماستر الاحترافي، وتسجيل البودكاست.',
     images: [
@@ -33,7 +42,6 @@ export const metadata = {
         alt: 'زفات تباريك للزفات والشيلات بالاسماء لجميع الافراح',
       },
     ],
-    // logo: "https://z-tabarik.vercel.app/logo.png"
   },
 
   // تم التعديل هنا: تحديد المقاسات ونوع الملف إجبارياً ليقرأه زاحف جوجل
@@ -91,11 +99,11 @@ const localBusiness = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'Customer Service',
-    telephone: '+967779011548',
+    telephone: '+966533019282',
     areaServed: 'السعودية',
     availableLanguage: 'ar',
   },
-  sameAs: ['https://wa.me/967779011548'],
+  sameAs: ['https://wa.me/966533019282'],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'خدمات استوديو زفات تباريك',

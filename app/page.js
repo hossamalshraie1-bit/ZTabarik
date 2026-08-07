@@ -170,7 +170,7 @@ export default function Home() {
               },
               "byArtist": {
                 "@type": "MusicGroup",
-                "name": track?.artists?.name || track?.artist || "استوديو زفات تباريك"
+                "name": track?.artists?.name || track?.artist || "زفات تباريك"
               },
               "isAccessibleForFree": true,
               "keywords": `${trackTitle}, شيلات, زفات, استوديو زفات تباريك,افراح,تخرج,زفات افراح,افراح,السعودية,شيلات سعودية,مناسبات ${Array.isArray(track?.filters) ? track.filters.join(', ') : ''}`
@@ -483,7 +483,7 @@ export default function Home() {
 أتطلع للتواصل معي لمناقشة التفاصيل والأسعار والجدول الزمني المتاح للتنفيذ. شكراً لكم ولإبداعكم المستمر! ✨`;
 
     const encodedMessage = encodeURIComponent(message);
-    const studioWhatsAppNumber = '967779011548';
+    const studioWhatsAppNumber = '966533019282';
 
     setIsBookingOpen(false);
     window.open(`https://wa.me/${studioWhatsAppNumber}?text=${encodedMessage}`, '_blank');
@@ -879,7 +879,7 @@ export default function Home() {
                   </p>
                   {/* <address style={{ fontStyle: 'normal', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                     تواصل معنا:{' '}
-                    <a href="https://wa.me/967779011548" style={{ color: 'var(--accent-color)', textDecoration: 'none' }} rel="noopener noreferrer" target="_blank">واتساب: 967779011548+</a>
+                    <a href="https://wa.me/966533019282" style={{ color: 'var(--accent-color)', textDecoration: 'none' }} rel="noopener noreferrer" target="_blank">واتساب: 966533019282+</a>
                   </address> */}
                   <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', flexWrap: 'wrap' }}>
                     {/* <span>تصميم وتطوير:</span> */}
@@ -1677,7 +1677,7 @@ export default function Home() {
                     <h4 style={{ color: 'var(--accent-color)', fontWeight: '800', fontSize: '0.98rem', margin: '0 0 12px' }}>📞 حجز وتواصل مباشر</h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                       <a
-                        href="https://wa.me/967779011548"
+                        href="https://wa.me/966533019282"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -1695,7 +1695,7 @@ export default function Home() {
                           boxShadow: '0 4px 15px rgba(37,211,102,0.3)'
                         }}
                       >
-                        💬 تواصل عبر واتساب: 967779011548+
+                        💬 تواصل عبر واتساب: 966533019282+
                       </a>
                       <button
                         onClick={() => setIsBookingOpen(true)}
@@ -1808,7 +1808,7 @@ export default function Home() {
                     onClick={(e) => {
                       e.stopPropagation();
                       const msg = `مرحباً، أعجبتني (${currentTrack.title}) وأرغب في طلب عمل مشابه.`;
-                      window.open(`https://wa.me/967779011548?text=${encodeURIComponent(msg)}`, '_blank');
+                      window.open(`https://wa.me/966533019282?text=${encodeURIComponent(msg)}`, '_blank');
                     }}
                     style={{ background: 'rgba(37, 211, 102, 0.15)', border: '1px solid #25D366', color: '#25D366', borderRadius: '10px', cursor: 'pointer', padding: '4px 5px', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.8rem', fontWeight: 'bold' }}
                     title="اطلب مثل هذا العمل عبر واتساب"
