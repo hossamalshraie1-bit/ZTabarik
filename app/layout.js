@@ -2,11 +2,11 @@
 import './globals.css';
 
 const SITE_NAME = 'زفات تباريك';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://z-tabarik.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 const ICON = '/logo.png';
 
 export const metadata = {
-  metadataBase: new URL('https://z-tabarik.vercel.app'),
+  metadataBase: new URL(SITE_URL),
 
   title: {
     default: `استوديو زفات تباريك للصوتيات | أرقى الشيلات والزفات بالأسماء`,
@@ -18,19 +18,19 @@ export const metadata = {
 
   keywords: ['زفات', 'شيلات', 'زفات بالأسماء', 'مكس وماستر', 'بودكاست', 'زفات تباريك', 'اعراس', 'تخرج', 'زفات افراح', 'افراح', 'السعودية', 'شيلات سعودية', 'مناسبات', 'استوديو صوتيات', 'استوديوهات', 'استوديو'],
 
-  authors: [{ name: 'زفات تباريك', url: 'https://z-tabarik.vercel.app' }],
+  authors: [{ name: 'زفات تباريك', url: SITE_URL }],
   creator: 'زفات تباريك',
   publisher: 'زفات تباريك',
 
   alternates: {
-    canonical: 'https://z-tabarik.vercel.app',
-    languages: { 'ar-SA': 'https://z-tabarik.vercel.app' },
+    canonical: SITE_URL,
+    languages: { 'ar-SA': SITE_URL },
   },
 
   openGraph: {
     type: 'website',
     locale: 'ar_SA',
-    url: 'https://z-tabarik.vercel.app',
+    url: SITE_URL,
     siteName: 'زفات تباريك',
     title: 'استوديو زفات تباريك للصوتيات | أرقى الشيلات والزفات بالأسماء',
     description: 'متخصصون في إنتاج الشيلات والزفات بالأسماء، المكس والماستر الاحترافي، وتسجيل البودكاست.',
@@ -69,7 +69,7 @@ export const metadata = {
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'استوديو زفات تباريك',
+  name: 'زفات تباريك',
   alternateName: 'زفات تباريك', // تم التعديل هنا: إضافة اسم بديل مقترح
   url: SITE_URL,
   description: 'متخصصون في إنتاج الشيلات والزفات بالأسماء، المكس والماستر الاحترافي، وتسجيل البودكاست.',
@@ -119,7 +119,21 @@ const localBusiness = {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
+          name: 'زفات بالاسماء',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
           name: 'إنتاج الشيلات',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'شيلات بالاسماء',
         },
       },
       {
