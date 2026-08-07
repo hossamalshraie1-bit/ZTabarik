@@ -2,7 +2,7 @@
 import './globals.css';
 
 const SITE_NAME = 'زفات تباريك';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://z-tabarik.vercel.app';
 const ICON = '/logo.png';
 
 export const metadata = {
