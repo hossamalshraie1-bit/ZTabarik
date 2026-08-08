@@ -904,7 +904,7 @@ export default function Home() {
                       <span>  تـصـمـيـم وتـطـويــر   :  </span>
                       <img
                         src="/get-soft.png"
-                        alt="GET SOFT Logo"
+                        alt="GET SOFT"
                         style={{
                           width: '18px',
                           height: '18px',
