@@ -73,6 +73,7 @@ const websiteSchema = {
   alternateName: 'زفات تباريك', // تم التعديل هنا: إضافة اسم بديل مقترح
   url: SITE_URL,
   description: 'متخصصون في إنتاج الشيلات والزفات بالأسماء، المكس والماستر الاحترافي، وتسجيل البودكاست.',
+  image: "/logo.png",
   logo: "/logo.png"
 };
 
