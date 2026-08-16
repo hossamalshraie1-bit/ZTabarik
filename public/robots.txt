@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
 
 Sitemap: https://z-tabarik.vercel.app/sitemap.xml
-Sitemap: https://z-tabarik.vercel.app/rss.xml
-Sitemap: https://z-tabarik.vercel.app/atom.xml
